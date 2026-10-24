@@ -29,7 +29,13 @@
 
         buildPhase = ''
           runHook preBuild
-          mvn -B package --offline -Dmaven.repo.local=${mavenRepository}
+          # Copy the repo into a writable dir: store paths are read-only (Maven
+          # wants to write .locks files) and Maven Resolver 2.x rejects symlinked
+          # artifacts whose real path doesn't match the repo layout, so the
+          # linkFarm symlinks must be dereferenced.
+          cp -rL ${mavenRepository} $TMP/m2repo
+          chmod -R u+w $TMP/m2repo
+          mvn -B package --offline -Dmaven.repo.local=$TMP/m2repo
           runHook postBuild
         '';
 
