@@ -4,13 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.example</groupId>
-  <artifactId>paradigmas</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <groupId>sigma</groupId>
+  <artifactId>torneo-de-los-inmortales</artifactId>
+  <version>1.0</version>
   <packaging>jar</packaging>
 
-  <name>paradigmas</name>
-  <description>Hello world Java project</description>
+  <name>Torneo de los Inmortales</name>
+  <description>
+    Parejas de combatientes se enfrentan en rondas eliminatorias hasta que queda una sola en pie; sus integrantes son proclamados los Dos Santos Supremos. Cada combatiente pertenece a una escuela de cultivación, que define su preparación inicial. Se espera que el sistema esté diseñado de manera flexible para que se puedan agregar nuevos tipos de combatientes, técnicas, escuelas y equipamientos fácilmente.
+  </description>
 
   <properties>
     <maven.compiler.release>21</maven.compiler.release>
@@ -18,7 +20,6 @@
   </properties>
 
   <build>
-    <!-- Plugin versions are pinned so the Nix build can resolve them offline. -->
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -50,7 +51,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>3.1.0</version>
         <configuration>
-          <mainClass>com.example.Main</mainClass>
+          <mainClass>sigma.Main</mainClass>
         </configuration>
       </plugin>
     </plugins>
