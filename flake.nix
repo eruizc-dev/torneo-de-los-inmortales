@@ -25,7 +25,7 @@
         version = "1.0-SNAPSHOT";
         src = ./.;
 
-        nativeBuildInputs = [ pkgs.maven ];
+        nativeBuildInputs = [ pkgs.maven pkgs.makeWrapper ];
 
         buildPhase = ''
           runHook preBuild
@@ -43,8 +43,8 @@
           runHook preInstall
           mkdir -p $out/bin $out/lib
           cp target/paradigmas-1.0-SNAPSHOT.jar $out/lib/paradigmas.jar
-          makeWrapper ${pkgs.openjdk}/bin/java $out/bin/paradigmas \
-            --add-args "-cp" "$out/lib/paradigmas.jar" "com.example.Main"
+          makeWrapper ${pkgs.openjdk21}/bin/java $out/bin/paradigmas \
+            --add-flags "-cp $out/lib/paradigmas.jar com.example.Main"
           runHook postInstall
         '';
       };
@@ -56,7 +56,7 @@
 
       devShells.default = pkgs.mkShell {
         buildInputs = [
-          pkgs.openjdk
+          pkgs.openjdk21
           pkgs.maven
         ];
       };
