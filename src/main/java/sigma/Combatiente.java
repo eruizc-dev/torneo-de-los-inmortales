@@ -31,6 +31,18 @@ public abstract class Combatiente {
 		this.vida = vida;
 	}
 
+    public void equipar(Equipamiento equipo) {
+        /* TODO implementar, verificando que cumpla con las condiciones del enunciado
+         *  - Un combatiente puede llevar hasta tres equipamientos, sin dos de la misma
+         *    categoría (arma, armadura, anillo, sello). Los efectos se acumulan.
+         *  - Se puede equipar y quitar antes del torneo y entre combates. Se debe manejar
+         *    correctamente cuando un cambio intenta romper una regla.
+         *  - Equipar un objeto que aumenta un máximo no aumenta el valor actual. Al
+         *    quitarlo, el valor actual se recorta al nuevo máximo si lo supera.
+         *  - El combatiente conoce los objetos que lleva y puede consultarlos.
+        */
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
