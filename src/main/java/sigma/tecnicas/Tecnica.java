@@ -1,4 +1,6 @@
-package sigma;
+package sigma.tecnicas;
+
+import sigma.combatientes.Combatiente;
 
 /**
  * Tecnica

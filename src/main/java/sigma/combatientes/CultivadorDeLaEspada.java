@@ -1,6 +1,8 @@
-package sigma;
+package sigma.combatientes;
 
 import java.util.List;
+
+import sigma.equipamiento.Equipamiento;
 
 public class CultivadorDeLaEspada extends Combatiente{
 	public CultivadorDeLaEspada(int id, String nombre, int energiaMaxima, List<Equipamiento> equipamiento, int energia, int vida) {

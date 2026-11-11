@@ -1,4 +1,6 @@
-package sigma;
+package sigma.torneo;
+
+import sigma.combatientes.Combatiente;
 
 public class Pareja {
     private final int id;

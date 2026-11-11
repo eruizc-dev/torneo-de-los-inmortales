@@ -1,6 +1,8 @@
-package sigma;
+package sigma.combatientes;
 
 import java.util.List;
+
+import sigma.equipamiento.Equipamiento;
 
 public class HechiceroDelVacio extends Combatiente{
 	public HechiceroDelVacio(int id, String nombre, int energiaMaxima, List<Equipamiento> equipamiento, int energia, int vida) {

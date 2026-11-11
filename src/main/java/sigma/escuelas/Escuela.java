@@ -1,7 +1,10 @@
-package sigma;
+package sigma.escuelas;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import sigma.equipamiento.Equipamiento;
+import sigma.tecnicas.Tecnica;
 
 public class Escuela {
     private final String nombre;

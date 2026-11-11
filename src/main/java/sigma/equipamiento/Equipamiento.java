@@ -1,4 +1,4 @@
-package sigma;
+package sigma.equipamiento;
 
 public interface Equipamiento {
     public interface Arma extends Equipamiento { }

@@ -1,7 +1,11 @@
-package sigma;
+package sigma.combatientes;
 
 import java.util.List;
 import java.util.Map;
+
+import sigma.equipamiento.Equipamiento;
+import sigma.tecnicas.Tecnica;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;

@@ -1,6 +1,8 @@
-package sigma;
+package sigma.combatientes;
 
 import java.util.List;
+
+import sigma.equipamiento.Equipamiento;
 
 public class MonjeDelCuerpoCelestial extends Combatiente{
 	public MonjeDelCuerpoCelestial(int id, String nombre, int energiaMaxima, List<Equipamiento> equipamiento, int energia, int vida) {
