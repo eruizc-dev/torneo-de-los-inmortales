@@ -11,34 +11,29 @@ public class Escuela {
     private final List<Tecnica> tecnicasIniciales;
     private final List<Equipamiento> equipamientoInicial;
 
-    // TODOImplementar y reemplazar por el constructor completo
-    @Deprecated
-	public Escuela() {
-		this.nombre = "Escuela de ejemplo";
-		this.tecnicasIniciales = new ArrayList<>();
-		this.equipamientoInicial = new ArrayList<>();
-    }
-
 	public Escuela(String nombre, List<Tecnica> tecnicasIniciales, List<Equipamiento> equipamientoInicial) {
+		
+		if(nombre == null || nombre.trim().isEmpty()) {
+			throw new IllegalArgumentException("El nombre de la escuela no puede estar vacio");
+		}
+		
+		if(tecnicasIniciales == null || equipamientoInicial == null) {
+			throw new IllegalArgumentException("Las listas no puede ser nulas");
+		}
 		this.nombre = nombre;
-		this.tecnicasIniciales = tecnicasIniciales;
-		this.equipamientoInicial = equipamientoInicial;
+		this.tecnicasIniciales = new ArrayList<>(tecnicasIniciales);
+		this.equipamientoInicial = new ArrayList<>(equipamientoInicial);
 	}
-
-    // TODO hacer getters
-
-    public static Escuela newEscuelaDeLaEspadaCelestial() {
-        // TODO implementar
-        return new Escuela();
-    }
-
-    public static Escuela newPalacioDelVacio() {
-        // TODO implementar
-        return new Escuela();
-    }
-
-    public static Escuela newMonasterioDelCuerpoDorado() {
-        // TODO implementar
-        return new Escuela();
-    }
+	
+	public String getNombre() {
+		return nombre;
+	}
+	
+	public List<Tecnica> getTecnicasInciales() {
+		return new ArrayList<>(tecnicasIniciales);
+	}
+	
+	public List<Equipamiento> getEquipamientoInicial() {
+		return new ArrayList<>(equipamientoInicial);
+	}
 }

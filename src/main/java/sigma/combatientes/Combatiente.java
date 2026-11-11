@@ -7,7 +7,6 @@ import sigma.equipamiento.Equipamiento;
 import sigma.tecnicas.Tecnica;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 
 /*

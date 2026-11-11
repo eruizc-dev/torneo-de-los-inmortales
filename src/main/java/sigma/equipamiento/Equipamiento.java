@@ -14,7 +14,7 @@ public class Equipamiento {
             int bonoDanio, int reduccionDanio,
             int bonoVidaMaxima, int bonoEnergiaMaxima) {
 		
-		if(nombre == null || nombre.isEmpty()) {
+		if(nombre == null || nombre.trim().isEmpty()) {
 			throw new IllegalArgumentException("El nombre no puede estar vacio");
 		}
 		
