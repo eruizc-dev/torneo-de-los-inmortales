@@ -11,6 +11,6 @@ public class MeditacionDelInmortal extends Tecnica{
 	
 	@Override
 	public void aplicar(Combatiente lanzador, Combatiente objetivo) {
-		throw new UnsupportedOperationException("Pendiente de ejecutar");
+		lanzador.recuperarVida(50);
 	}
 }

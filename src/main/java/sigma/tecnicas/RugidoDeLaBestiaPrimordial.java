@@ -6,11 +6,15 @@ public class RugidoDeLaBestiaPrimordial extends Tecnica{
 
 	
 	public RugidoDeLaBestiaPrimordial() {
-		super("Rugido de la Bestia Primordial", 20);
+		super("Rugido de la Bestia Primordial", 30);
 	}
 	
 	@Override
 	public void aplicar(Combatiente lanzador, Combatiente objetivo) {
-		throw new UnsupportedOperationException("Pendiente de ejecutar");
+		int danioBase = 50;
+		
+		int danioFinal = lanzador.calcularDanio(danioBase);
+		
+		objetivo.recibirDanio(danioFinal);
 	}
 }

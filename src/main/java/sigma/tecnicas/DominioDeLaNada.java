@@ -10,7 +10,13 @@ public class DominioDeLaNada extends Tecnica{
 	
 	@Override
 	public void aplicar(Combatiente lanzador, Combatiente objetivo) {
-		throw new UnsupportedOperationException("Pendiente de ejecutar");
+		int danioBase = 10;
+		int energiaReducida = 10;
+		
+		int danioFinal = lanzador.calcularDanio(danioBase);
+		
+		objetivo.recibirDanio(danioFinal);
+		objetivo.perderEnergia(energiaReducida);
 	}
 
 }

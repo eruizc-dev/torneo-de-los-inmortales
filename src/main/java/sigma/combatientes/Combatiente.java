@@ -32,6 +32,8 @@ public abstract class Combatiente {
 	private int energia;
 	private int energiaMaxima;
 	
+	private int reduccionDefensiva;
+	
 	private final List<Equipamiento> equipamiento;
 	private final List<Tecnica> tecnicas;
 	private final Map<Tecnica, Integer> usosTecnicas;
@@ -64,7 +66,7 @@ public abstract class Combatiente {
     		throw new IllegalArgumentException("El daño no puede ser negativo");
     	}
     	
-    	return danio;
+    	return (int) (danio * (1 - reduccionDefensiva / 100.0));
     }
     
     public int calcularCostoEnergia(int costoBase) {
@@ -73,6 +75,18 @@ public abstract class Combatiente {
     	}
     	
     	return costoBase;
+    }
+    
+    public void perderEnergia(int cantidad) {
+    	if(cantidad < 0) {
+    		throw new IllegalArgumentException("No se puede perder energia negativa");
+    	}
+    	
+    	energia = Math.max(0, energia - cantidad);
+    }
+    
+    public void recibirDanio(int danio) {
+    	recibirAtaque(danio);
     }
     
     protected void recibirAtaque(int danio) {
@@ -113,9 +127,22 @@ public abstract class Combatiente {
     	energia = Math.min(energiaMaxima, energia + energiaRecuperada);
     }
     
+    public void activarDefensa(int porcentaje) {
+    	if(porcentaje <= 0 || porcentaje > 100) {
+    		throw new IllegalArgumentException("Porcentaje de defensa invalido");
+    	}
+    	
+    	if(reduccionDefensiva > 0) {
+    		throw new IllegalStateException("Ya tiene una defensa activa");
+    	}
+    	
+    	reduccionDefensiva = porcentaje;
+    }
+    
     public void reiniciarCombate() {
     	vida = vidaMaxima;
     	energia = energiaMaxima;
+    	reduccionDefensiva = 0;
     }
     
     public boolean estaVivo() {
@@ -178,6 +205,10 @@ public abstract class Combatiente {
     
     public int getEnergiaMaxima() {
     	return energiaMaxima;
+    }
+    
+    public boolean tieneDefensaActiva() {
+    	return reduccionDefensiva > 0;
     }
     
     public boolean tieneEnergiaSuficiente(int costoBase) {

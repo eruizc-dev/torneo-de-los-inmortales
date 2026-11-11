@@ -10,6 +10,6 @@ public class MuroDelCuerpoDorado extends Tecnica{
 	
 	@Override
 	public void aplicar(Combatiente lanzador, Combatiente objetivo) {
-		throw new UnsupportedOperationException("Pendiente de ejecutar");
+		lanzador.activarDefensa(25);
 	}
 }

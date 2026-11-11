@@ -10,7 +10,10 @@ public class CorteDeLosMilAmaneceres extends Tecnica{
 	
 	@Override
 	public void aplicar(Combatiente lanzador, Combatiente objetivo) {
-		throw new UnsupportedOperationException("Pendiente de ejecutar");
+		int danioBase = 30;
+		int danioFinal = lanzador.calcularDanio(danioBase);
+		
+		objetivo.recibirDanio(danioFinal);
 	}
 
 }
