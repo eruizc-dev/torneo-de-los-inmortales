@@ -65,26 +65,4 @@ public abstract class Combatiente {
         return true;
     }
 
-    // TODO mover a otro archivo
-
-    // Potencia el daño que provoca
-    public class CultivadorDeLaEspada extends Combatiente {
-		public CultivadorDeLaEspada(int id, String nombre, int energiaMaxima, List<Equipamiento> equipamiento, int energia, int vida) {
-			super(id, nombre, energiaMaxima, equipamiento, energia, vida);
-		}
-    }
-
-    // Reduce el daño que recibe
-    public class MonjeDelCuerpoCelestial extends Combatiente {
-		public MonjeDelCuerpoCelestial(int id, String nombre, int energiaMaxima, List<Equipamiento> equipamiento, int energia, int vida) {
-			super(id, nombre, energiaMaxima, equipamiento, energia, vida);
-		}
-    }
-
-    // Gasta menos energia al ejecutar tecnicas
-    public class HechiceroDelVacio extends Combatiente {
-		public HechiceroDelVacio(int id, String nombre, int energiaMaxima, List<Equipamiento> equipamiento, int energia, int vida) {
-			super(id, nombre, energiaMaxima, equipamiento, energia, vida);
-		}
-    }
 }
