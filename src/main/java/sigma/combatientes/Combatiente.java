@@ -47,10 +47,13 @@ public abstract class Combatiente {
 		this.energia = energia;
 		this.energiaMaxima = energiaMaxima;
 		
-		this.equipamiento = new ArrayList<>(equipamiento);
+		this.equipamiento = new ArrayList<>();
 		this.tecnicas = new ArrayList<>();
 		this.usosTecnicas = new HashMap<>();
 		
+		for(Equipamiento equipo : equipamiento) {
+			equipar(equipo);
+		}
 	}
     
     public int calcularDanio(int danioBase) {
@@ -58,7 +61,13 @@ public abstract class Combatiente {
     		throw new IllegalArgumentException("El daño no puede ser negativo");
     	}
     	
-    	return danioBase;
+    	int bonoTotal = 0;
+    	
+    	for(Equipamiento equipo : equipamiento) {
+    		bonoTotal += equipo.getBonoDanio();
+    	}
+    	
+    	return (int) (danioBase *(1 + bonoTotal / 100.0));
     }
     
     protected int calcularDanioRecibido(int danio) {
@@ -66,7 +75,15 @@ public abstract class Combatiente {
     		throw new IllegalArgumentException("El daño no puede ser negativo");
     	}
     	
-    	return (int) (danio * (1 - reduccionDefensiva / 100.0));
+    	int reduccionTotal = reduccionDefensiva;
+    	
+    	for(Equipamiento equipo : equipamiento) {
+    		reduccionTotal += equipo.getReduccionDanio();
+    	}
+    	
+    	reduccionTotal = Math.min(100, reduccionTotal);
+    	
+    	return (int) (danio * (1 - reduccionTotal / 100.0));
     }
     
     public int calcularCostoEnergia(int costoBase) {
@@ -150,15 +167,41 @@ public abstract class Combatiente {
     }
 
     public void equipar(Equipamiento equipo) {
-        /* TODO implementar, verificando que cumpla con las condiciones del enunciado
-         *  - Un combatiente puede llevar hasta tres equipamientos, sin dos de la misma
-         *    categoría (arma, armadura, anillo, sello). Los efectos se acumulan.
-         *  - Se puede equipar y quitar antes del torneo y entre combates. Se debe manejar
-         *    correctamente cuando un cambio intenta romper una regla.
-         *  - Equipar un objeto que aumenta un máximo no aumenta el valor actual. Al
-         *    quitarlo, el valor actual se recorta al nuevo máximo si lo supera.
-         *  - El combatiente conoce los objetos que lleva y puede consultarlos.
-        */
+    	if(equipo == null) {
+    		throw new IllegalArgumentException("El equipamiento no puede ser nulo");
+    	}
+    	
+    	if(equipamiento.size() >= 3) {
+    		throw new IllegalStateException("No puede equipar mas de 3 objetos");
+    	}
+    	
+    	for(Equipamiento actual : equipamiento) {
+    		if(actual.getCategoriaEquipamiento() == equipo.getCategoriaEquipamiento()) {
+    			throw new IllegalArgumentException("Ya tiene un equipamiento de esa categoria");
+    		}
+    	}
+    	
+    	equipamiento.add(equipo);
+    	
+    	vidaMaxima += equipo.getBonoVidaMaxima();
+    	energiaMaxima += equipo.getBonoEnergiaMaxima();
+    }
+    
+    public void desequipar(Equipamiento equipo) {
+    	if(equipo == null) {
+    		throw new IllegalArgumentException("El equipamiento no puede ser nulo");
+    	}
+    	
+    	if(!equipamiento.remove(equipo)) {
+    		throw new IllegalArgumentException("El combatiente no tiene ese equipamiento");
+    	}
+    	
+    	vidaMaxima -= equipo.getBonoVidaMaxima();
+    	energiaMaxima -= equipo.getBonoEnergiaMaxima();
+    	
+    	vida = Math.min(vida, vidaMaxima);
+    	energia = Math.min(energia, energiaMaxima);
+    	
     }
 
     @Override
@@ -223,6 +266,10 @@ public abstract class Combatiente {
     	return estaVivo()
     			&& tieneUsosDisponibles(tecnica)
     			&& tieneEnergiaSuficiente(tecnica.getCostoEnergia());
+    }
+    
+    public List<Equipamiento> getEquipamiento() {
+    	return new ArrayList<>(equipamiento);
     }
     
     public List<Tecnica> getTecnicas() {
