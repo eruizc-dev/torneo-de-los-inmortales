@@ -37,7 +37,7 @@ public class CreadorCombatientes {
 			default: throw new IllegalArgumentException("Tipo de combatiente desconocido");
 		}
 		
-		for(Tecnica tecnica : escuela.getTecnicasInciales()) {
+		for(Tecnica tecnica : escuela.getTecnicasIniciales()) {
 			combatiente.agregarTecnica(tecnica);
 		}
 		

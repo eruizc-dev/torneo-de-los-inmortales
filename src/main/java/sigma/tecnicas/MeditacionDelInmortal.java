@@ -6,7 +6,7 @@ public class MeditacionDelInmortal extends Tecnica{
 
 	
 	public MeditacionDelInmortal() {
-		super("Meditacion del Inmortal", 20);
+		super("Meditacion del Inmortal", 20, Tipo.RECUPERACION);
 	}
 	
 	@Override
