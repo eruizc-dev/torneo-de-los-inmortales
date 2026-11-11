@@ -3,6 +3,7 @@ package sigma;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 /*
@@ -173,6 +174,57 @@ public abstract class Combatiente {
     
     public int getEnergiaMaxima() {
     	return energiaMaxima;
+    }
+    
+    public boolean tieneEnergiaSuficiente(int costoBase) {
+    	return energia >= calcularCostoEnergia(costoBase);
+    }
+    
+    public boolean puedeUsarTecnica(Tecnica tecnica) {
+    	if(tecnica == null || !tecnicas.contains(tecnica)) {
+    		return false;
+    	}
+    	
+    	return estaVivo()
+    			&& tieneUsosDisponibles(tecnica)
+    			&& tieneEnergiaSuficiente(tecnica.getCostoEnergia());
+    }
+    
+    public List<Tecnica> getTecnicas() {
+    	return new ArrayList<>(tecnicas);
+    }
+    
+    public void agregarTecnica(Tecnica tecnicaNueva) {
+    	if(tecnicaNueva == null) {
+    		throw new IllegalArgumentException("La tecnica tiene que existir");
+    	}
+    	
+    	if(tecnicas.contains(tecnicaNueva)) {
+    		throw new IllegalArgumentException("La tecnica ya existe");
+    	}
+    	
+    	tecnicas.add(tecnicaNueva);
+    	usosTecnicas.put(tecnicaNueva,0);
+    }
+    
+    public int getUsosTecnica(Tecnica tecnica) {
+    	if(!usosTecnicas.containsKey(tecnica)) {
+    		throw new IllegalArgumentException("El combatiene no posee esa tecnica");
+    	}
+    	
+    	return usosTecnicas.get(tecnica);
+    }
+    
+    public boolean tieneUsosDisponibles(Tecnica tecnica) {
+    	return getUsosTecnica(tecnica) < 5;
+    }
+    
+    public void registrarUsoTecnica(Tecnica tecnica) {
+    	if(!tieneUsosDisponibles(tecnica)) {
+    		throw new IllegalStateException("La tecnina no tiene mas usos");
+    	}
+    	
+    	usosTecnicas.put(tecnica, getUsosTecnica(tecnica) + 1);
     }
 
 }

@@ -5,11 +5,15 @@ package sigma;
  */
 public abstract class Tecnica {
     private final String nombre;
-    private final int energia;
+    private final int costoEnergia;
 
     protected Tecnica(String nombre, int energia) {
         this.nombre = nombre;
-        this.energia = energia;
+        this.costoEnergia = energia;
+    }
+    
+    public int getCostoEnergia() {
+    	return costoEnergia;
     }
 
     abstract void aplicar(Combatiente lanzador, Combatiente target);
