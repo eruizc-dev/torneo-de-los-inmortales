@@ -5,7 +5,7 @@ import sigma.combatientes.Combatiente;
 public class CorteDeLosMilAmaneceres extends Tecnica{
 	
 	public CorteDeLosMilAmaneceres() {
-		super("Corte de los Mil Amaneceres", 20);
+		super("Corte de los Mil Amaneceres", 20, Tipo.OFENSIVA);
 	}
 	
 	@Override

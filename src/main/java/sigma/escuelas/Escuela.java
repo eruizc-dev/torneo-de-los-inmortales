@@ -29,7 +29,7 @@ public class Escuela {
 		return nombre;
 	}
 	
-	public List<Tecnica> getTecnicasInciales() {
+	public List<Tecnica> getTecnicasIniciales() {
 		return new ArrayList<>(tecnicasIniciales);
 	}
 	

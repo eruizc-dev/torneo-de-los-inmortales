@@ -10,7 +10,7 @@ public class Pareja {
     private final int id;
 	private final Combatiente combatienteUno;
     private final Combatiente combatienteDos;
-    private final Map<String, Combatiente> usuarioTecnica;
+    private final Map<Tecnica, Combatiente> usuarioTecnica;
 
 	public Pareja(int id, Combatiente combatiente1, Combatiente combatiente2) {
 		
@@ -33,7 +33,7 @@ public class Pareja {
 			throw new IllegalStateException("El compañero tiene bloqueada esta tecnica");
 		}
 		
-		usuarioTecnica.put(tecnica.getNombre(),combatiente);
+		usuarioTecnica.put(tecnica,combatiente);
 	}
 	
 	public boolean permiteUsarTecnica(Combatiente combatiente, Tecnica tecnica) {
@@ -45,23 +45,13 @@ public class Pareja {
 			throw new IllegalArgumentException("El combatiente no pertenece a esta pareja");
 		}
 		
-		Combatiente usuario = usuarioTecnica.get(tecnica.getNombre());
+		Combatiente usuario = usuarioTecnica.get(tecnica);
 		
 		if(usuario == null || usuario.equals(combatiente)) {
 			return true;
 		}
 		
-		if(!usuario.estaVivo()) {
-			return true;
-		}
-		
-		for(Tecnica t : usuario.getTecnicas()) {
-			if(t.getNombre().equals(tecnica.getNombre())) {
-				return !usuario.tieneUsosDisponibles(tecnica);
-			}
-		}
-		
-		return false;
+		return !usuario.estaVivo() || !usuario.tieneUsosDisponibles(tecnica);
 	}
 	
 	public void reiniciarRegistroTecnicas() {

@@ -5,7 +5,7 @@ import sigma.combatientes.Combatiente;
 public class DominioDeLaNada extends Tecnica{
 	
 	public DominioDeLaNada() {
-		super("Dominio de la Nada", 10);
+		super("Dominio de la Nada", 10, Tipo.OFENSIVA);
 	}
 	
 	@Override
