@@ -1,6 +1,9 @@
 package sigma;
 
 import java.util.List;
+import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /*
  * Combatiente (abstracta)
@@ -15,21 +18,78 @@ import java.util.List;
  * poder agregar tipos nuevos sin modificar el torneo ni las técnicas existentes.
  */
 public abstract class Combatiente {
-    public final int id;
-	public final String nombre;
-    public final int energiaMaxima;
-    public final List<Equipamiento> equipamiento;
-    public int energia;
-    public int vida;
-
+	
+    private final int id;
+	private final String nombre;
+	
+	private int vida;
+	private int vidaMaxima;
+	private int energia;
+	private int energiaMaxima;
+	
+	private final List<Equipamiento> equipamiento;
+	private final List<Tecnica> tecnicas;
+	private final Map<Tecnica, Integer> usosTecnicas;
+	
     public Combatiente(int id, String nombre, int energiaMaxima, List<Equipamiento> equipamiento, int energia, int vida) {
 		this.id = id;
 		this.nombre = nombre;
-		this.energiaMaxima = energiaMaxima;
-		this.equipamiento = equipamiento;
-		this.energia = energia;
+		
 		this.vida = vida;
+		this.vidaMaxima = vida;
+		this.energia = energia;
+		this.energiaMaxima = energiaMaxima;
+		
+		this.equipamiento = new ArrayList<>(equipamiento);
+		this.tecnicas = new ArrayList<>();
+		this.usosTecnicas = new HashMap<>();
+		
 	}
+    
+    protected void recibirAtaque(int danio) {
+    	if(danio < 0) {
+    		throw new IllegalArgumentException("El daño no puede ser negativo");
+    	}
+    	
+    	vida = Math.max(0, vida - danio);
+    }
+    
+    public void recuperarVida(int curacion) {
+    	if(curacion < 0) {
+    		throw new IllegalArgumentException("La curacion no puede ser negativa");
+    	}
+    	
+    	vida = Math.min(vidaMaxima, vida + curacion);
+    }
+    
+    public void consumirEnergia(int energiaGastada) {
+    	if(energiaGastada < 0) {
+    		throw new IllegalArgumentException("El costo de energia no puede ser 0");
+    	}
+    	
+    	if(energiaGastada > energia) {
+    		throw new IllegalStateException("Eneriga insuficiente");
+    	}
+    	
+    	energia -= energiaGastada;
+    }
+    
+    public void recuperarEnergia(int energiaRecuperada) {
+    	if(energiaRecuperada < 0) {
+    		throw new IllegalArgumentException("La recuperacion de energia no puede ser negativa");
+    	}
+    	
+    	energia = Math.min(energiaMaxima, energia + energiaRecuperada);
+    }
+    
+    public void reiniciarCombate() {
+    	vida = vidaMaxima;
+    	energia = energiaMaxima;
+    }
+    
+    public boolean estaVivo() {
+    	return vida > 0;
+    }
 
     public void equipar(Equipamiento equipo) {
         /* TODO implementar, verificando que cumpla con las condiciones del enunciado
@@ -60,9 +120,33 @@ public abstract class Combatiente {
         if (getClass() != obj.getClass())
             return false;
         Combatiente other = (Combatiente) obj;
-        if (id != other.id)
+        if (this.id != other.id)
             return false;
         return true;
+    }
+    
+    public int getId() {
+    	return id;
+    }
+    
+    public String getNombre() {
+    	return nombre;
+    }
+    
+    public int getVida() {
+    	return vida;
+    }
+    
+    public int getVidaMaxima() {
+    	return vidaMaxima;
+    }
+    
+    public int getEnergia() {
+    	return energia;
+    }
+    
+    public int getEnergiaMaxima() {
+    	return energiaMaxima;
     }
 
 }
