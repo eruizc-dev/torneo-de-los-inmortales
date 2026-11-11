@@ -46,12 +46,38 @@ public abstract class Combatiente {
 		
 	}
     
+    public int calcularDanio(int danioBase) {
+    	if(danioBase < 0) {
+    		throw new IllegalArgumentException("El daño no puede ser negativo");
+    	}
+    	
+    	return danioBase;
+    }
+    
+    protected int calcularDanioRecibido(int danio) {
+    	if(danio < 0) {
+    		throw new IllegalArgumentException("El daño no puede ser negativo");
+    	}
+    	
+    	return danio;
+    }
+    
+    public int calcularCostoEnergia(int costoBase) {
+    	if(costoBase < 0) {
+    		throw new IllegalArgumentException("El costo base de energia no puede ser negativo");
+    	}
+    	
+    	return costoBase;
+    }
+    
     protected void recibirAtaque(int danio) {
     	if(danio < 0) {
     		throw new IllegalArgumentException("El daño no puede ser negativo");
     	}
     	
-    	vida = Math.max(0, vida - danio);
+    	int danioFinal = calcularDanioRecibido(danio);
+    	
+    	vida = Math.max(0, vida - danioFinal);
     }
     
     public void recuperarVida(int curacion) {
