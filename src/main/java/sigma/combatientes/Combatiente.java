@@ -30,6 +30,7 @@ public abstract class Combatiente {
 	private int vidaMaxima;
 	private int energia;
 	private int energiaMaxima;
+	public static final int DANIO_ATAQUE_BASICO = 10;
 	
 	private int reduccionDefensiva;
 	
@@ -307,5 +308,20 @@ public abstract class Combatiente {
     	
     	usosTecnicas.put(tecnica, getUsosTecnica(tecnica) + 1);
     }
-
+    
+    public void usarTecnica(Tecnica tecnica, Combatiente objetivo) {
+        if (!puedeUsarTecnica(tecnica)) {
+            throw new IllegalStateException(nombre + " no puede usar " + tecnica.getNombre());
+        }
+        consumirEnergia(calcularCostoEnergia(tecnica.getCostoEnergia()));
+        registrarUsoTecnica(tecnica);
+        tecnica.aplicar(this, objetivo);
+    }
+    
+    public void atacar(Combatiente objetivo) {
+        if (!estaVivo()) {
+            throw new IllegalStateException(nombre + " está fuera de combate");
+        }
+        objetivo.recibirDanio(calcularDanio(DANIO_ATAQUE_BASICO));
+    }
 }
