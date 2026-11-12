@@ -6,7 +6,7 @@ public class RugidoDeLaBestiaPrimordial extends Tecnica{
 
 	
 	public RugidoDeLaBestiaPrimordial() {
-		super("Rugido de la Bestia Primordial", 30);
+		super("Rugido de la Bestia Primordial", 30, TipoTecnica.OFENSIVA);
 	}
 	
 	@Override
