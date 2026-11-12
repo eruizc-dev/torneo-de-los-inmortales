@@ -4,16 +4,20 @@ import sigma.combatientes.Combatiente;
 import sigma.tecnicas.Tecnica;
 import sigma.tecnicas.TipoTecnica;
 import sigma.eventos.PublicadorAcontecimientos;
+import sigma.eventos.Acontecimiento;
+import sigma.eventos.TipoAcontecimiento;
+import sigma.eventos.ResultadoCombate;
 
 public class Combate {
 	private final Pareja parejaUno;
 	private final Pareja parejaDos;
 	private final int limiteAsaltos;
 	private boolean ejecutado = false;
+	private final int ronda;
 	
 	private final PublicadorAcontecimientos publicador;
 	
-	public Combate(Pareja parejaUno, Pareja parejaDos, int limiteAsaltos, PublicadorAcontecimientos publicador) {
+	public Combate(Pareja parejaUno, Pareja parejaDos, int limiteAsaltos, PublicadorAcontecimientos publicador, int ronda) {
 		if(parejaUno == null || parejaDos == null) {
 			throw new IllegalArgumentException("Las parejas no pueden ser nulas");
 		}
@@ -30,10 +34,15 @@ public class Combate {
 			throw new IllegalArgumentException("El publicador no puede ser nulo");
 		}
 		
+		if(ronda <= 0) {
+			throw new IllegalArgumentException("La ronda debe ser positiva");
+		}
+		
 		this.parejaUno = parejaUno;
 		this.parejaDos = parejaDos;
 		this.limiteAsaltos = limiteAsaltos;
 		this.publicador = publicador;
+		this.ronda = ronda;
 	}
 	
 	private void prepararCombate() {
@@ -202,6 +211,8 @@ public class Combate {
 		if(tecnica == null) {
 			objetivo = seleccionarObjetivo(rival);
 			ataqueBasico(combatiente, objetivo);
+			notificarAccion(combatiente.getNombre() + " realizo un ataque basico contra " + objetivo.getNombre());
+			notificarEliminacion(objetivo);
 			return;
 		}
 		
@@ -212,6 +223,10 @@ public class Combate {
 		}
 		
 		ejecutarTecnica(combatiente, pareja, tecnica, objetivo);
+		notificarAccion(combatiente.getNombre() + " utilizo la tecnica " + tecnica.getNombre() + " contra " + objetivo.getNombre());
+		if(tecnica.getTipoTecnica() == TipoTecnica.OFENSIVA) {
+			notificarEliminacion(objetivo);
+		}
 	}
 	
 	private void realizarTurno(Pareja pareja, Pareja rival) {
@@ -263,10 +278,16 @@ public class Combate {
 		if(ejecutado) {
 			throw new IllegalStateException("El combate ya fue ejecutado");
 		}
-		
+			
 		ejecutado = true;
 		
+		Pareja ganadora;
+		
 		prepararCombate();
+		
+		Acontecimiento inicio = new Acontecimiento(TipoAcontecimiento.INICIO_COMBATE, ronda, "Comienza el combate de la ronda " + ronda);
+		
+		publicador.notificar(inicio);
 		
 		int asalto = 0;
 		
@@ -280,14 +301,38 @@ public class Combate {
 		int vidaDos = parejaDos.calcularVidaTotal();
 		
 		if(vidaUno > vidaDos) {
-			return parejaUno;
+			ganadora = parejaUno;
+		} else if(vidaUno < vidaDos) {
+			ganadora =  parejaDos;
+		} else {
+			ganadora = obtenerPrimeraPareja();
 		}
 		
-		if(vidaUno < vidaDos) {
-			return parejaDos;
-		}
+		notificarResultado(parejaUno, parejaDos, ganadora);
 		
-		return obtenerPrimeraPareja();
+		return ganadora;
+	}
+	
+	public void notificarAccion(String descripcion) {
+		Acontecimiento accion = new Acontecimiento(TipoAcontecimiento.ACCION, ronda, descripcion);
+		
+		publicador.notificar(accion);
+	}
+	
+	public void notificarEliminacion(Combatiente combatiente) {
+		if(!combatiente.estaVivo()) {
+			Acontecimiento eliminacion = new Acontecimiento(TipoAcontecimiento.ELIMINACION, ronda, "El combatiente " + combatiente.getNombre() + " fue eliminado");
+			
+			publicador.notificar(eliminacion);
+		}
+	}
+	
+	public void notificarResultado(Pareja parejaUno, Pareja parejaDos, Pareja parejaGanadora) {
+		ResultadoCombate resultado = new ResultadoCombate(ronda, parejaUno.getId(), parejaDos.getId(), parejaGanadora.getId(), parejaUno.calcularVidaTotal(), parejaDos.calcularVidaTotal());
+		
+		Acontecimiento acontecimiento = new Acontecimiento(TipoAcontecimiento.RESULTADO_COMBATE, ronda, "Finalizo el combate. Gano la pareja " + parejaGanadora.getId(), resultado);
+		
+		publicador.notificar(acontecimiento);
 	}
 	
 }

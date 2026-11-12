@@ -8,6 +8,8 @@ import java.util.Set;
 import sigma.combatientes.Combatiente;
 import sigma.eventos.Observador;
 import sigma.eventos.PublicadorAcontecimientos;
+import sigma.eventos.Acontecimiento;
+import sigma.eventos.TipoAcontecimiento;
 
 public class Torneo {
 	
@@ -64,24 +66,36 @@ public class Torneo {
 		
 		List<Pareja> rondaActual = new ArrayList<>(parejasInscriptas);
 		
+		int numeroRonda = 1;
+		
 		while(rondaActual.size() > 1) {
 			List<Pareja> ganadoras = new ArrayList<>();
 			
 			for(int i = 0; i < rondaActual.size(); i += 2) {
-				Combate combate = new Combate(rondaActual.get(i), rondaActual.get(i+1), 20, publicador);
+				Combate combate = new Combate(rondaActual.get(i), rondaActual.get(i+1), 20, publicador, numeroRonda);
 				
 				Pareja ganadadora = combate.ejecutar();
 				ganadoras.add(ganadadora);
 			}
 			rondaActual = ganadoras;
+			
+			numeroRonda++;
 		}
 		
-		return rondaActual.get(0);
+		Pareja campeona = rondaActual.get(0);
+		
+		notificarProclamacion(campeona, numeroRonda - 1);
+		
+		return campeona;
 	}
 	
 	public void agregarObservaodr(Observador observador) {
 		publicador.agregarObservador(observador);
 	}
 	
-	
+	public void notificarProclamacion(Pareja campeona, int rondaFinal) {
+		Acontecimiento proclamacion = new Acontecimiento(TipoAcontecimiento.PROCLAMACION, rondaFinal, "¡La pareja " + campeona.getId() + " se proclama campeona del Torneo de los Inmortales!");
+		
+		publicador.notificar(proclamacion);
+	}
 }
