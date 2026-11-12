@@ -11,7 +11,9 @@ import sigma.escuelas.Escuela;
 import sigma.tecnicas.CorteDeLosMilAmaneceres;
 import sigma.tecnicas.DominioDeLaNada;
 import sigma.tecnicas.MeditacionDelInmortal;
+import sigma.torneo.Torneo;
 import sigma.torneo.Pareja;
+
 
 public class TorneoDeLosInmortales {
 
@@ -55,17 +57,17 @@ public class TorneoDeLosInmortales {
 	      "Cultivador de la Espada", "Darian", escuelaDeLaEspada);
 
 
-	    //Torneo torneo = new Torneo();
+	    Torneo torneo = new Torneo();
 
 	    // Registrar al Heraldo y al Cronista como interesados.
 
 	    Pareja primera = new Pareja(aurelio, nebula);
 
-	    //torneo.inscribir(primera);
+	    torneo.inscribir(primera);
 
 	    // Crear los demás combatientes e inscribir las otras tres parejas.
 
-	    //torneo.iniciar();
+	    torneo.iniciar();
 
 	    // El Heraldo anuncia a los Dos Santos Supremos; después, el main
 

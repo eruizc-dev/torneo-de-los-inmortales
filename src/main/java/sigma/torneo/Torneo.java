@@ -1,0 +1,78 @@
+package sigma.torneo;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import sigma.combatientes.Combatiente;
+
+public class Torneo {
+	
+	public boolean iniciado;
+	
+	private final List<Pareja> parejasInscriptas = new ArrayList<>();
+	private final Set<Combatiente> combatientesInscriptos = new HashSet<>();
+	
+	public void inscribir(Pareja pareja) {
+		if(iniciado) {
+			throw new IllegalStateException("No se pueden inscribir parejas una vez iniciado el torneo");
+		}
+		
+		if(pareja == null) {
+			throw new IllegalArgumentException("La pareja no puede ser nula");
+		}
+		
+		if(parejasInscriptas.size() >= 8) {
+			throw new IllegalStateException("El torneo admite como maximo 8 parejas");
+		}
+		
+		if(parejasInscriptas.contains(pareja)) {
+			throw new IllegalArgumentException("La pareja ya esta inscripta");
+		}
+		
+		Combatiente combatienteUno = pareja.getCombatienteUno();
+		Combatiente combatienteDos = pareja.getCombatienteDos();
+		
+		if(combatientesInscriptos.contains(combatienteUno) || combatientesInscriptos.contains(combatienteDos)) {
+			throw new IllegalArgumentException("Uno de los combatientes ya esta inscripto en el torneo");
+		}
+		
+		parejasInscriptas.add(pareja);
+		combatientesInscriptos.add(combatienteUno);
+		combatientesInscriptos.add(combatienteDos);
+	}
+	
+	private void validarCantidadDeParejas() {
+		int cantidad = parejasInscriptas.size();
+		
+		if(cantidad != 4 && cantidad != 8) {
+			throw new IllegalStateException("El torneo debe tener 4 u 8 parejas");
+		}
+	}
+	
+	public Pareja iniciar() {
+		if(iniciado) {
+			throw new IllegalStateException("El torneo ya fue inciado");
+		}
+		
+		validarCantidadDeParejas();
+		iniciado = true;
+		
+		List<Pareja> rondaActual = new ArrayList<>(parejasInscriptas);
+		
+		while(rondaActual.size() > 1) {
+			List<Pareja> ganadoras = new ArrayList<>();
+			
+			for(int i = 0; i < rondaActual.size(); i += 2) {
+				Combate combate = new Combate(rondaActual.get(i), rondaActual.get(i+1), 20);
+				
+				Pareja ganadadora = combate.ejecutar();
+				ganadoras.add(ganadadora);
+			}
+			rondaActual = ganadoras;
+		}
+		
+		return rondaActual.get(0);
+	}
+}
