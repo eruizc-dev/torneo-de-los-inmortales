@@ -22,7 +22,7 @@ public class ParejaTest {
         aurelio.agregarTecnica(corte);
         nebula.agregarTecnica(corte);
 
-        Pareja pareja = new Pareja(1, aurelio, nebula);
+        Pareja pareja = new Pareja(aurelio, nebula);
 
         pareja.registrarUsuarioTecnica(aurelio, corte);
 

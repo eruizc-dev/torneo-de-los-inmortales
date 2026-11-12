@@ -102,11 +102,7 @@ public class Combate {
 	}
 	
 	private void ataqueBasico(Combatiente atacante, Combatiente objetivo) {
-		int danioBase = 10;
-		
-		int danioFinal = atacante.calcularDanio(danioBase);
-		
-		objetivo.recibirDanio(danioFinal);
+		atacante.atacar(objetivo);
 	}
 	
 	private boolean puedeEjecutarTecnica(Combatiente combatiente, Pareja pareja, Tecnica tecnica) {
@@ -118,12 +114,8 @@ public class Combate {
 			throw new IllegalArgumentException("No se puede ejecutar la tecnica");
 		}
 		
-		int costo = combatiente.calcularCostoEnergia(tecnica.getCostoEnergia());
+		combatiente.usarTecnica(tecnica, objetivo);
 		
-		tecnica.aplicar(combatiente, objetivo);
-		
-		combatiente.consumirEnergia(costo);
-		combatiente.registrarUsoTecnica(tecnica);
 		pareja.registrarUsuarioTecnica(combatiente, tecnica);
 	}
 	
@@ -133,7 +125,7 @@ public class Combate {
 		}
 		
 		for(Tecnica tecnica : combatiente.getTecnicas()) {
-			if(tecnica.getTipoTecnica() == TipoTecnica.RECUPERACION && pareja.permiteUsarTecnica(combatiente, tecnica)) {
+			if(tecnica.getTipoTecnica() == TipoTecnica.RECUPERACION && puedeEjecutarTecnica(combatiente, pareja, tecnica)) {
 				return tecnica;
 			}
 		}
@@ -147,7 +139,7 @@ public class Combate {
 		}
 		
 		for(Tecnica tecnica : combatiente.getTecnicas()) {
-			if(tecnica.getTipoTecnica() == TipoTecnica.DEFENSIVA && pareja.permiteUsarTecnica(combatiente, tecnica)) {
+			if(tecnica.getTipoTecnica() == TipoTecnica.DEFENSIVA && puedeEjecutarTecnica(combatiente, pareja, tecnica)) {
 				return tecnica;
 			}
 		}
@@ -160,7 +152,7 @@ public class Combate {
 		int mayorUsosRestantes = -1;
 		
 		for(Tecnica tecnica : combatiente.getTecnicas()) {
-			if(tecnica.getTipoTecnica() == TipoTecnica.OFENSIVA && pareja.permiteUsarTecnica(combatiente, tecnica)) {
+			if(tecnica.getTipoTecnica() == TipoTecnica.OFENSIVA && puedeEjecutarTecnica(combatiente, pareja, tecnica)) {
 				int usosRestante = 5 - combatiente.getUsosTecnica(tecnica);
 				if(usosRestante > mayorUsosRestantes) {
 					mayorUsosRestantes = usosRestante;
@@ -259,7 +251,7 @@ public class Combate {
 		
 	}
 	
-	private Pareja ejecutar() {
+	public Pareja ejecutar() {
 		if(ejecutado) {
 			throw new IllegalStateException("El combate ya fue ejecutado");
 		}

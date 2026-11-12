@@ -25,7 +25,6 @@ public abstract class Combatiente {
 	
     private final int id;
 	private final String nombre;
-	
 	private int vida;
 	private int vidaMaxima;
 	private int energia;
@@ -313,9 +312,13 @@ public abstract class Combatiente {
         if (!puedeUsarTecnica(tecnica)) {
             throw new IllegalStateException(nombre + " no puede usar " + tecnica.getNombre());
         }
-        consumirEnergia(calcularCostoEnergia(tecnica.getCostoEnergia()));
-        registrarUsoTecnica(tecnica);
+        
+        int costo = calcularCostoEnergia(tecnica.getCostoEnergia());
+        
         tecnica.aplicar(this, objetivo);
+        
+        consumirEnergia(costo);
+        registrarUsoTecnica(tecnica);
     }
     
     public void atacar(Combatiente objetivo) {
