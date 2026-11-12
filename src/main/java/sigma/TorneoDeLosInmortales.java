@@ -13,6 +13,8 @@ import sigma.tecnicas.DominioDeLaNada;
 import sigma.tecnicas.MeditacionDelInmortal;
 import sigma.torneo.Torneo;
 import sigma.torneo.Pareja;
+import sigma.eventos.HeraldoImperial;
+import sigma.eventos.CronistaDeLaSecta;
 
 
 public class TorneoDeLosInmortales {
@@ -40,34 +42,46 @@ public class TorneoDeLosInmortales {
 
 	    CreadorCombatientes creador = new CreadorCombatientes();
 
-	    Combatiente aurelio = creador.crear(
+	    Combatiente aurelio = creador.crear("Cultivador de la Espada", "Aurelio", escuelaDeLaEspada);
 
-	      "Cultivador de la Espada", "Aurelio", escuelaDeLaEspada);
+	    Combatiente nebula = creador.crear("Hechicero del Vacío", "Nébula", palacioDelVacio);
 
-	    Combatiente nebula = creador.crear(
+	    Combatiente kael = creador.crear("Monje del Cuerpo Celestial", "Kael", palacioDelVacio);
 
-	      "Hechicero del Vacío", "Nébula", palacioDelVacio);
+	    Combatiente darian = creador.crear("Cultivador de la Espada", "Darian", escuelaDeLaEspada);
+	    
+	    Combatiente mei = creador.crear("Cultivador de la Espada", "Mei", escuelaDeLaEspada);
 
-	    Combatiente kael = creador.crear(
+	    Combatiente shen = creador.crear("Monje del Cuerpo Celestial", "Shen", palacioDelVacio);
 
-	      "Monje del Cuerpo Celestial", "Kael", palacioDelVacio);
+	    Combatiente akira = creador.crear("Hechicero del Vacío", "Akira", palacioDelVacio);
 
-	    Combatiente darian = creador.crear(
-
-	      "Cultivador de la Espada", "Darian", escuelaDeLaEspada);
+	    Combatiente ren = creador.crear("Monje del Cuerpo Celestial", "Ren", escuelaDeLaEspada);
 
 
 	    Torneo torneo = new Torneo();
-
+	    
 	    // Registrar al Heraldo y al Cronista como interesados.
-
-	    Pareja primera = new Pareja(aurelio, nebula);
-
-	    torneo.inscribir(primera);
+	    HeraldoImperial heraldo = new HeraldoImperial();
+	    CronistaDeLaSecta cronista = new CronistaDeLaSecta();
+	    
+	    torneo.agregarObservaodr(heraldo);
+	    torneo.agregarObservaodr(cronista);
 
 	    // Crear los demás combatientes e inscribir las otras tres parejas.
+	    Pareja primera = new Pareja(aurelio, nebula);
+	    Pareja segunda = new Pareja(kael, darian);
+	    Pareja tercera = new Pareja(mei, shen);
+	    Pareja cuarta = new Pareja(akira, ren);
+
+	    torneo.inscribir(primera);
+	    torneo.inscribir(segunda);
+	    torneo.inscribir(tercera);
+	    torneo.inscribir(cuarta);
 
 	    torneo.iniciar();
+	    
+	    heraldo.mostrarTablaDePosiciones(cronista.getTablaPosiciones());
 
 	    // El Heraldo anuncia a los Dos Santos Supremos; después, el main
 
