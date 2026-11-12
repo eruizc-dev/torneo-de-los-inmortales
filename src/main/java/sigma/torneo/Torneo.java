@@ -6,11 +6,14 @@ import java.util.List;
 import java.util.Set;
 
 import sigma.combatientes.Combatiente;
+import sigma.eventos.Observador;
+import sigma.eventos.PublicadorAcontecimientos;
 
 public class Torneo {
 	
 	public boolean iniciado;
 	
+	private final PublicadorAcontecimientos publicador = new PublicadorAcontecimientos();
 	private final List<Pareja> parejasInscriptas = new ArrayList<>();
 	private final Set<Combatiente> combatientesInscriptos = new HashSet<>();
 	
@@ -65,7 +68,7 @@ public class Torneo {
 			List<Pareja> ganadoras = new ArrayList<>();
 			
 			for(int i = 0; i < rondaActual.size(); i += 2) {
-				Combate combate = new Combate(rondaActual.get(i), rondaActual.get(i+1), 20);
+				Combate combate = new Combate(rondaActual.get(i), rondaActual.get(i+1), 20, publicador);
 				
 				Pareja ganadadora = combate.ejecutar();
 				ganadoras.add(ganadadora);
@@ -75,4 +78,10 @@ public class Torneo {
 		
 		return rondaActual.get(0);
 	}
+	
+	public void agregarObservaodr(Observador observador) {
+		publicador.agregarObservador(observador);
+	}
+	
+	
 }

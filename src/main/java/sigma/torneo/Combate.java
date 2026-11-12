@@ -3,6 +3,7 @@ package sigma.torneo;
 import sigma.combatientes.Combatiente;
 import sigma.tecnicas.Tecnica;
 import sigma.tecnicas.TipoTecnica;
+import sigma.eventos.PublicadorAcontecimientos;
 
 public class Combate {
 	private final Pareja parejaUno;
@@ -10,7 +11,9 @@ public class Combate {
 	private final int limiteAsaltos;
 	private boolean ejecutado = false;
 	
-	public Combate(Pareja parejaUno, Pareja parejaDos, int limiteAsaltos) {
+	private final PublicadorAcontecimientos publicador;
+	
+	public Combate(Pareja parejaUno, Pareja parejaDos, int limiteAsaltos, PublicadorAcontecimientos publicador) {
 		if(parejaUno == null || parejaDos == null) {
 			throw new IllegalArgumentException("Las parejas no pueden ser nulas");
 		}
@@ -23,9 +26,14 @@ public class Combate {
 			throw new IllegalArgumentException("El limite de asaltos debe ser mayor a cero");
 		}
 		
+		if(publicador == null) {
+			throw new IllegalArgumentException("El publicador no puede ser nulo");
+		}
+		
 		this.parejaUno = parejaUno;
 		this.parejaDos = parejaDos;
 		this.limiteAsaltos = limiteAsaltos;
+		this.publicador = publicador;
 	}
 	
 	private void prepararCombate() {
