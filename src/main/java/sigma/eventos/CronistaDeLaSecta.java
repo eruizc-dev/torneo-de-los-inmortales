@@ -44,7 +44,7 @@ public class CronistaDeLaSecta implements Observador{
 		List<PosicionPareja> tabla = new ArrayList<>(posiciones.values());
 		
 		for(int i = 0; i < tabla.size() - 1; i++) {
-			for(int j = 0; j< tabla.size(); j++) {
+			for(int j = i + 1; j< tabla.size(); j++) {
 				PosicionPareja actual = tabla.get(i);
 				PosicionPareja siguiente = tabla.get(j);
 				
