@@ -3,18 +3,16 @@ package sigma;
 import java.util.List;
 
 import sigma.equipamiento.AnilloEspiritual;
-import sigma.equipamiento.Equipamiento;
+import sigma.equipamiento.ArmaduraDorada;
 import sigma.equipamiento.EspadaCelestial;
 import sigma.combatientes.Combatiente;
 import sigma.combatientes.CreadorCombatientes;
 import sigma.escuelas.Escuela;
-import sigma.tecnicas.CorteDeLosMilAmaneceres;
-import sigma.tecnicas.DominioDeLaNada;
-import sigma.tecnicas.MeditacionDelInmortal;
 import sigma.torneo.Torneo;
 import sigma.torneo.Pareja;
 import sigma.eventos.HeraldoImperial;
 import sigma.eventos.CronistaDeLaSecta;
+import sigma.tecnicas.*;
 
 
 public class TorneoDeLosInmortales {
@@ -33,10 +31,15 @@ public class TorneoDeLosInmortales {
 
 	    Escuela palacioDelVacio = new Escuela("Palacio del Vacío",
 
-	      List.of(new DominioDeLaNada(), new MeditacionDelInmortal()),
+	      List.of(new DominioDeLaNada(), new MeditacionDelInmortal(), new ToqueDeLaSerpiente()),
 
 	      List.of(new AnilloEspiritual()));
-
+	    
+	    Escuela monasterioDelCuerpoDorado = new Escuela("Monasterio del Cuerpo Dorado",
+	    		List.of(new MuroDelCuerpoDorado(), new LaSanacionDelCielo()),
+	    		List.of(new ArmaduraDorada()));
+	    
+	    
 
 	    // La creación de combatientes está centralizada.
 
@@ -46,13 +49,13 @@ public class TorneoDeLosInmortales {
 
 	    Combatiente nebula = creador.crear("Hechicero del Vacío", "Nébula", palacioDelVacio);
 
-	    Combatiente kael = creador.crear("Monje del Cuerpo Celestial", "Kael", palacioDelVacio);
+	    Combatiente kael = creador.crear("Monje del Cuerpo Celestial", "Kael", monasterioDelCuerpoDorado);
 
 	    Combatiente darian = creador.crear("Cultivador de la Espada", "Darian", escuelaDeLaEspada);
 	    
 	    Combatiente mei = creador.crear("Cultivador de la Espada", "Mei", escuelaDeLaEspada);
 
-	    Combatiente shen = creador.crear("Monje del Cuerpo Celestial", "Shen", palacioDelVacio);
+	    Combatiente shen = creador.crear("Monje del Cuerpo Celestial", "Shen", monasterioDelCuerpoDorado);
 
 	    Combatiente akira = creador.crear("Hechicero del Vacío", "Akira", palacioDelVacio);
 

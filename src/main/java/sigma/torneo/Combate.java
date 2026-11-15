@@ -1,6 +1,7 @@
 package sigma.torneo;
 
 import sigma.combatientes.Combatiente;
+import sigma.efectos.EfectoTemporal;
 import sigma.tecnicas.Tecnica;
 import sigma.tecnicas.TipoTecnica;
 import sigma.eventos.PublicadorAcontecimientos;
@@ -233,14 +234,21 @@ public class Combate {
 		Combatiente primero = obtenerPrimerCombatiente(pareja);
 		Combatiente segundo = obtenerSegundoCombatiente(pareja);
 		
-		if(primero.estaVivo() && rival.estaEnPie()) {
-			realizarAccion(primero, pareja, rival);
+		realizarTurnoDeCombatiente(primero,pareja,rival);
+		realizarTurnoDeCombatiente(segundo,pareja,rival);
+	}
+	
+	private void realizarTurnoDeCombatiente(Combatiente combatiente, Pareja pareja, Pareja rival) {
+		if(!combatiente.estaVivo() || !rival.estaEnPie()) {
+			return;
 		}
 		
-		if(segundo.estaVivo() && rival.estaEnPie()) {
-			realizarAccion(segundo, pareja, rival);
+		for(EfectoTemporal efecto: combatiente.procesarEfectosDelTurno()) {
+			notificarEfecto(combatiente,efecto);
 		}
 		
+		notificarEliminacion(combatiente);
+		realizarAccion(combatiente, pareja, rival);
 	}
 	
 	private void recuperarEnergiaAsalto() {
@@ -333,6 +341,12 @@ public class Combate {
 		Acontecimiento acontecimiento = new Acontecimiento(TipoAcontecimiento.RESULTADO_COMBATE, ronda, "Finalizo el combate. Gano la pareja " + parejaGanadora.getId(), resultado);
 		
 		publicador.notificar(acontecimiento);
+	}
+	
+	public void notificarEfecto(Combatiente combatiente, EfectoTemporal efecto) {
+		String descripcion = combatiente.getNombre() + " sufre efecto " + efecto.getNombre() + "(turnos restantes " + efecto.getTurnosRestantes() + ")";
+		publicador.notificar(new Acontecimiento(TipoAcontecimiento.EFECTO, ronda, descripcion));
+		
 	}
 	
 }

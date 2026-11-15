@@ -5,5 +5,6 @@ public enum TipoAcontecimiento {
 	ACCION,
 	ELIMINACION,
 	RESULTADO_COMBATE,
-	PROCLAMACION
+	PROCLAMACION,
+	EFECTO
 }

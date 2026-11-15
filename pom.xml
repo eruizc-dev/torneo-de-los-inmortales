@@ -60,7 +60,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>3.1.0</version>
         <configuration>
-          <mainClass>sigma.Main</mainClass>
+          <mainClass>sigma.TorneoDeLosInmortales</mainClass>
         </configuration>
       </plugin>
     </plugins>

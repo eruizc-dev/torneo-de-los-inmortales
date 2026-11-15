@@ -2,10 +2,10 @@ package sigma.combatientes;
 
 import java.util.List;
 import java.util.Map;
-
+import sigma.efectos.EfectoTemporal;
 import sigma.equipamiento.Equipamiento;
 import sigma.tecnicas.Tecnica;
-
+import java.util.LinkedHashMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -21,6 +21,7 @@ import java.util.HashMap;
  * técnica provoca distinto daño según quién la ejecuta, sin que la técnica conozca el tipo del combatiente. Se deben
  * poder agregar tipos nuevos sin modificar el torneo ni las técnicas existentes.
  */
+
 public abstract class Combatiente {
 	
     private final int id;
@@ -36,6 +37,7 @@ public abstract class Combatiente {
 	private final List<Equipamiento> equipamiento;
 	private final List<Tecnica> tecnicas;
 	private final Map<Tecnica, Integer> usosTecnicas;
+	private final Map<String, EfectoTemporal> efectosActivos = new LinkedHashMap<>();
 	
     public Combatiente(int id, String nombre, int energiaMaxima, List<Equipamiento> equipamiento, int energia, int vida) {
 		this.id = id;
@@ -159,6 +161,7 @@ public abstract class Combatiente {
     	vida = vidaMaxima;
     	energia = energiaMaxima;
     	reduccionDefensiva = 0;
+    	efectosActivos.clear();
     }
     
     public boolean estaVivo() {
@@ -327,4 +330,47 @@ public abstract class Combatiente {
         }
         objetivo.recibirDanio(calcularDanio(DANIO_ATAQUE_BASICO));
     }
+    
+    // ---------- Bonus: efectos temporales ----------
+
+    public void perderVida(int cantidad) {
+    	if(cantidad < 0) {
+    		throw new IllegalArgumentException("No se puede perder vida negativa");
+    	}
+    	vida = Math.max(0, vida - cantidad);
+    }
+
+    public void aplicarEfecto(EfectoTemporal efecto) {
+    	if(efecto == null) {
+    		throw new IllegalArgumentException("El efecto no puede ser nulo");
+    	}
+    	if(!estaVivo()) {
+    		throw new IllegalStateException(nombre + " está fuera de combate");
+    	}
+    	efectosActivos.put(efecto.getNombre(), efecto);
+    }
+
+    public List<EfectoTemporal> procesarEfectosDelTurno() {
+    	List<EfectoTemporal> aplicados = new ArrayList<>();
+    	for(EfectoTemporal efecto : new ArrayList<>(efectosActivos.values())) {
+    		if(!estaVivo()) {
+    			break;
+    		}
+    		efecto.aplicarTurno(this);
+    		aplicados.add(efecto);
+    		if(efecto.terminado()) {
+    			efectosActivos.remove(efecto.getNombre());
+    		}
+    	}
+    	return aplicados;
+    }
+
+    public boolean tieneEfecto(String nombreEfecto) {
+    	return efectosActivos.containsKey(nombreEfecto);
+    }
+
+    public List<EfectoTemporal> getEfectosActivos() {
+    	return new ArrayList<>(efectosActivos.values());
+    }
+    
 }
