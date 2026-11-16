@@ -58,7 +58,7 @@ public class Torneo {
 	
 	public Pareja iniciar() {
 		if(iniciado) {
-			throw new IllegalStateException("El torneo ya fue inciado");
+			throw new IllegalStateException("El torneo ya fue iniciado");
 		}
 		
 		validarCantidadDeParejas();

@@ -131,7 +131,7 @@ public abstract class Combatiente {
     	}
     	
     	if(energiaGastada > energia) {
-    		throw new IllegalStateException("Eneriga insuficiente");
+    		throw new IllegalStateException("Energia insuficiente");
     	}
     	
     	energia -= energiaGastada;
@@ -280,7 +280,7 @@ public abstract class Combatiente {
     
     public void agregarTecnica(Tecnica tecnicaNueva) {
     	if(tecnicaNueva == null) {
-    		throw new IllegalArgumentException("La tecnica tiene que existir");
+    		throw new IllegalArgumentException("La tecnica debe existir");
     	}
     	
     	if(tecnicas.contains(tecnicaNueva)) {
@@ -293,7 +293,7 @@ public abstract class Combatiente {
     
     public int getUsosTecnica(Tecnica tecnica) {
     	if(!usosTecnicas.containsKey(tecnica)) {
-    		throw new IllegalArgumentException("El combatiene no posee esa tecnica");
+    		throw new IllegalArgumentException("El combatiente no posee esa tecnica");
     	}
     	
     	return usosTecnicas.get(tecnica);
@@ -305,7 +305,7 @@ public abstract class Combatiente {
     
     public void registrarUsoTecnica(Tecnica tecnica) {
     	if(!tieneUsosDisponibles(tecnica)) {
-    		throw new IllegalStateException("La tecnina no tiene mas usos");
+    		throw new IllegalStateException("La tecnica no tiene mas usos");
     	}
     	
     	usosTecnicas.put(tecnica, getUsosTecnica(tecnica) + 1);

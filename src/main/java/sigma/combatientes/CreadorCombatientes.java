@@ -12,7 +12,7 @@ public class CreadorCombatientes {
 	public Combatiente crear(String tipo, String nombre, Escuela escuela) {
 		
 		if(nombre == null || nombre.trim().isEmpty() || escuela == null) {
-			throw new IllegalArgumentException("Datos de combatiende invalidos");
+			throw new IllegalArgumentException("Datos de combatiente invalidos");
 		}
 		
 		int id = proximoId;

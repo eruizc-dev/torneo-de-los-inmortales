@@ -23,7 +23,7 @@ public class Equipamiento {
 		}
 		
 		if(bonoDanio < 0 || bonoVidaMaxima < 0 || bonoEnergiaMaxima < 0) {
-			throw new IllegalArgumentException("Las bonificaiones no pueden ser negativas");
+			throw new IllegalArgumentException("Las bonificaciones no pueden ser negativas");
 		}
 		
 		if(reduccionDanio < 0 || reduccionDanio > 100) {

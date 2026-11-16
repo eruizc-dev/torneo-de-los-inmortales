@@ -15,7 +15,7 @@ public class Pareja {
 	public Pareja(Combatiente combatiente1, Combatiente combatiente2) {
 		
 		if(combatiente1 == null || combatiente2 == null) {
-			throw new IllegalArgumentException("Ningun combatinete puede ser nulo");
+			throw new IllegalArgumentException("Ningun combatiente puede ser nulo");
 		}
 		
 		if(combatiente1.equals(combatiente2)) {

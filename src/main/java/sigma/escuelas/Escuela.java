@@ -18,7 +18,7 @@ public class Escuela {
 		}
 		
 		if(tecnicasIniciales == null || equipamientoInicial == null) {
-			throw new IllegalArgumentException("Las listas no puede ser nulas");
+			throw new IllegalArgumentException("Las listas no pueden ser nulas");
 		}
 		this.nombre = nombre;
 		this.tecnicasIniciales = new ArrayList<>(tecnicasIniciales);
