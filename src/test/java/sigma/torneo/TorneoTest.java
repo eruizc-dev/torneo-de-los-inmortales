@@ -2,6 +2,7 @@ package sigma.torneo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 import sigma.combatientes.Combatiente;
@@ -36,14 +37,14 @@ public class TorneoTest {
 
         Escenario(int cantidadParejas) {
             Escuela espada = new Escuela("Escuela de la Espada Celestial",
-                    List.of(new CorteDeLosMilAmaneceres(), new RugidoDeLaBestiaPrimordial()),
-                    List.of(new EspadaCelestial()));
+                    Arrays.asList(new CorteDeLosMilAmaneceres(), new RugidoDeLaBestiaPrimordial()),
+                    Arrays.asList(new EspadaCelestial()));
             Escuela palacio = new Escuela("Palacio del Vacío",
-                    List.of(new DominioDeLaNada(), new MeditacionDelInmortal()),
-                    List.of(new AnilloEspiritual()));
+                    Arrays.asList(new DominioDeLaNada(), new MeditacionDelInmortal()),
+                    Arrays.asList(new AnilloEspiritual()));
             Escuela monasterio = new Escuela("Monasterio del Cuerpo Dorado",
-                    List.of(new MuroDelCuerpoDorado(), new MeditacionDelInmortal()),
-                    List.of(new ArmaduraDorada()));
+                    Arrays.asList(new MuroDelCuerpoDorado(), new MeditacionDelInmortal()),
+                    Arrays.asList(new ArmaduraDorada()));
             Escuela[] escuelas = { espada, palacio, monasterio };
 
             CreadorCombatientes creador = new CreadorCombatientes();
@@ -100,8 +101,8 @@ public class TorneoTest {
     }
 
     private static Pareja parejaSimple(int idUno, int idDos) {
-        return new Pareja(new HechiceroDelVacio(idUno, "C" + idUno, 40, List.of(), 40, 100),
-                new HechiceroDelVacio(idDos, "C" + idDos, 40, List.of(), 40, 100));
+        return new Pareja(new HechiceroDelVacio(idUno, "C" + idUno, 40, Arrays.asList(), 40, 100),
+                new HechiceroDelVacio(idDos, "C" + idDos, 40, Arrays.asList(), 40, 100));
     }
 
  
@@ -118,9 +119,9 @@ public class TorneoTest {
     @Test
     public void unCombatienteNoPuedeInscribirseDosVecesEnDistintasParejas() {
         Torneo torneo = new Torneo();
-        Combatiente aurelio = new HechiceroDelVacio(1, "Aurelio", 40, List.of(), 40, 100);
-        Combatiente nebula = new HechiceroDelVacio(2, "Nebula", 40, List.of(), 40, 100);
-        Combatiente kael = new HechiceroDelVacio(3, "Kael", 40, List.of(), 40, 100);
+        Combatiente aurelio = new HechiceroDelVacio(1, "Aurelio", 40, Arrays.asList(), 40, 100);
+        Combatiente nebula = new HechiceroDelVacio(2, "Nebula", 40, Arrays.asList(), 40, 100);
+        Combatiente kael = new HechiceroDelVacio(3, "Kael", 40, Arrays.asList(), 40, 100);
         torneo.inscribir(new Pareja(aurelio, nebula));
 
         assertThrows(IllegalArgumentException.class, () -> torneo.inscribir(new Pareja(kael, aurelio)));
@@ -129,10 +130,10 @@ public class TorneoTest {
     @Test
     public void unaInscripcionRechazadaNoDejaRegistradoANingunIntegrante() {
         Torneo torneo = new Torneo();
-        Combatiente aurelio = new HechiceroDelVacio(1, "Aurelio", 40, List.of(), 40, 100);
-        Combatiente nebula = new HechiceroDelVacio(2, "Nebula", 40, List.of(), 40, 100);
-        Combatiente kael = new HechiceroDelVacio(3, "Kael", 40, List.of(), 40, 100);
-        Combatiente darian = new HechiceroDelVacio(4, "Darian", 40, List.of(), 40, 100);
+        Combatiente aurelio = new HechiceroDelVacio(1, "Aurelio", 40, Arrays.asList(), 40, 100);
+        Combatiente nebula = new HechiceroDelVacio(2, "Nebula", 40, Arrays.asList(), 40, 100);
+        Combatiente kael = new HechiceroDelVacio(3, "Kael", 40, Arrays.asList(), 40, 100);
+        Combatiente darian = new HechiceroDelVacio(4, "Darian", 40, Arrays.asList(), 40, 100);
         torneo.inscribir(new Pareja(aurelio, nebula));
 
         assertThrows(IllegalArgumentException.class, () -> torneo.inscribir(new Pareja(kael, aurelio)));

@@ -1,6 +1,7 @@
 package sigma.tecnicas;
 
 import java.util.List;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 import sigma.combatientes.Combatiente;
@@ -14,10 +15,10 @@ public class TecnicaTest {
 
     @Test
     public void mismaTecnicaCausaDistintoDañoSegunElEjecutor() {
-        Combatiente cultivador = new CultivadorDeLaEspada(1, "Aurelio", 40, List.of(), 40, 100);
-        Combatiente hechicero = new HechiceroDelVacio(2, "Nebula", 40, List.of(), 40, 100);
-        Combatiente objetivoDelCultivador = new HechiceroDelVacio(3, "Darian", 40, List.of(), 40, 100);
-        Combatiente objetivoDelHechicero = new HechiceroDelVacio(4, "Lyra", 40, List.of(), 40, 100);
+        Combatiente cultivador = new CultivadorDeLaEspada(1, "Aurelio", 40, Arrays.asList(), 40, 100);
+        Combatiente hechicero = new HechiceroDelVacio(2, "Nebula", 40, Arrays.asList(), 40, 100);
+        Combatiente objetivoDelCultivador = new HechiceroDelVacio(3, "Darian", 40, Arrays.asList(), 40, 100);
+        Combatiente objetivoDelHechicero = new HechiceroDelVacio(4, "Lyra", 40, Arrays.asList(), 40, 100);
 
         Tecnica corte = new CorteDeLosMilAmaneceres();
         cultivador.agregarTecnica(corte);
@@ -32,8 +33,8 @@ public class TecnicaTest {
 
     @Test
     public void noSeEjecutaTecnicaSinEnergiaSuficiente() {
-        Combatiente cultivador = new CultivadorDeLaEspada(1, "Aurelio", 40, List.of(), 40, 100);
-        Combatiente monje = new MonjeDelCuerpoCelestial(2, "Kael", 40, List.of(), 40, 100);
+        Combatiente cultivador = new CultivadorDeLaEspada(1, "Aurelio", 40, Arrays.asList(), 40, 100);
+        Combatiente monje = new MonjeDelCuerpoCelestial(2, "Kael", 40, Arrays.asList(), 40, 100);
 
         Tecnica corte = new CorteDeLosMilAmaneceres();
         cultivador.agregarTecnica(corte);
@@ -49,8 +50,8 @@ public class TecnicaTest {
 
     @Test
     public void noSeEjecutaTecnicaSinUsosRestantesAunqueTengaEnergia() {
-        Combatiente cultivador = new CultivadorDeLaEspada(1, "Aurelio", 40, List.of(), 40, 100);
-        Combatiente monje = new MonjeDelCuerpoCelestial(2, "Kael", 40, List.of(), 40, 1000);
+        Combatiente cultivador = new CultivadorDeLaEspada(1, "Aurelio", 40, Arrays.asList(), 40, 100);
+        Combatiente monje = new MonjeDelCuerpoCelestial(2, "Kael", 40, Arrays.asList(), 40, 1000);
 
         Tecnica corte = new CorteDeLosMilAmaneceres();
         cultivador.agregarTecnica(corte);
@@ -71,8 +72,8 @@ public class TecnicaTest {
 
     @Test
     public void usosSeConservanEntreCombatesYVidaYEnergiaSeRecuperan() {
-        Combatiente cultivador = new CultivadorDeLaEspada(1, "Aurelio", 40, List.of(), 40, 100);
-        Combatiente monje = new MonjeDelCuerpoCelestial(2, "Kael", 40, List.of(), 40, 100);
+        Combatiente cultivador = new CultivadorDeLaEspada(1, "Aurelio", 40, Arrays.asList(), 40, 100);
+        Combatiente monje = new MonjeDelCuerpoCelestial(2, "Kael", 40, Arrays.asList(), 40, 100);
 
         Tecnica corte = new CorteDeLosMilAmaneceres();
         cultivador.agregarTecnica(corte);
@@ -93,8 +94,8 @@ public class TecnicaTest {
     
     @Test
     public void dominioDeLaNadaDaniaYQuitaEnergia() {
-        Combatiente hechicero = new HechiceroDelVacio(1, "Nebula", 40, List.of(), 40, 100);
-        Combatiente rival = new HechiceroDelVacio(2, "Lyra", 40, List.of(), 40, 100);
+        Combatiente hechicero = new HechiceroDelVacio(1, "Nebula", 40, Arrays.asList(), 40, 100);
+        Combatiente rival = new HechiceroDelVacio(2, "Lyra", 40, Arrays.asList(), 40, 100);
         Tecnica dominio = new DominioDeLaNada();
         hechicero.agregarTecnica(dominio);
 
@@ -106,7 +107,7 @@ public class TecnicaTest {
 
     @Test
     public void muroDelCuerpoDoradoReduceElDanioRecibidoHastaQueTermineElCombate() {
-        Combatiente hechicero = new HechiceroDelVacio(1, "Nebula", 40, List.of(), 40, 100);
+        Combatiente hechicero = new HechiceroDelVacio(1, "Nebula", 40, Arrays.asList(), 40, 100);
         Tecnica muro = new MuroDelCuerpoDorado();
         hechicero.agregarTecnica(muro);
 
@@ -127,7 +128,7 @@ public class TecnicaTest {
 
     @Test
     public void meditacionDelInmortalRecuperaVidaSinSuperarElMaximo() {
-        Combatiente hechicero = new HechiceroDelVacio(1, "Nebula", 40, List.of(), 40, 100);
+        Combatiente hechicero = new HechiceroDelVacio(1, "Nebula", 40, Arrays.asList(), 40, 100);
         Tecnica meditacion = new MeditacionDelInmortal();
         hechicero.agregarTecnica(meditacion);
 
@@ -139,9 +140,9 @@ public class TecnicaTest {
 
     @Test
     public void rugidoDeLaBestiaPrimordialEsMasPoderosoQueElCorte() {
-        Combatiente lanzador = new HechiceroDelVacio(1, "Nebula", 40, List.of(), 40, 100);
-        Combatiente objetivoCorte = new HechiceroDelVacio(2, "A", 40, List.of(), 40, 100);
-        Combatiente objetivoRugido = new HechiceroDelVacio(3, "B", 40, List.of(), 40, 100);
+        Combatiente lanzador = new HechiceroDelVacio(1, "Nebula", 40, Arrays.asList(), 40, 100);
+        Combatiente objetivoCorte = new HechiceroDelVacio(2, "A", 40, Arrays.asList(), 40, 100);
+        Combatiente objetivoRugido = new HechiceroDelVacio(3, "B", 40, Arrays.asList(), 40, 100);
         Tecnica corte = new CorteDeLosMilAmaneceres();
         Tecnica rugido = new RugidoDeLaBestiaPrimordial();
         lanzador.agregarTecnica(corte);
@@ -157,8 +158,8 @@ public class TecnicaTest {
 
     @Test
     public void usarTecnicaDescuentaElCostoDeEnergiaYRegistraElUso() {
-        Combatiente cultivador = new CultivadorDeLaEspada(1, "Aurelio", 40, List.of(), 40, 100);
-        Combatiente rival = new HechiceroDelVacio(2, "Lyra", 40, List.of(), 40, 100);
+        Combatiente cultivador = new CultivadorDeLaEspada(1, "Aurelio", 40, Arrays.asList(), 40, 100);
+        Combatiente rival = new HechiceroDelVacio(2, "Lyra", 40, Arrays.asList(), 40, 100);
         Tecnica corte = new CorteDeLosMilAmaneceres();
         cultivador.agregarTecnica(corte);
 
@@ -170,9 +171,9 @@ public class TecnicaTest {
 
     @Test
     public void losUsosSeRegistranPorCombatienteAunqueCompartanLaTecnica() {
-        Combatiente aurelio = new CultivadorDeLaEspada(1, "Aurelio", 40, List.of(), 40, 100);
-        Combatiente darian = new CultivadorDeLaEspada(2, "Darian", 40, List.of(), 40, 100);
-        Combatiente rival = new HechiceroDelVacio(3, "Lyra", 40, List.of(), 40, 1000);
+        Combatiente aurelio = new CultivadorDeLaEspada(1, "Aurelio", 40, Arrays.asList(), 40, 100);
+        Combatiente darian = new CultivadorDeLaEspada(2, "Darian", 40, Arrays.asList(), 40, 100);
+        Combatiente rival = new HechiceroDelVacio(3, "Lyra", 40, Arrays.asList(), 40, 1000);
         Tecnica corte = new CorteDeLosMilAmaneceres(); // misma instancia para los dos
         aurelio.agregarTecnica(corte);
         darian.agregarTecnica(corte);
@@ -185,8 +186,8 @@ public class TecnicaTest {
 
     @Test
     public void noSePuedeUsarUnaTecnicaQueElCombatienteNoTiene() {
-        Combatiente hechicero = new HechiceroDelVacio(1, "Nebula", 40, List.of(), 40, 100);
-        Combatiente rival = new HechiceroDelVacio(2, "Lyra", 40, List.of(), 40, 100);
+        Combatiente hechicero = new HechiceroDelVacio(1, "Nebula", 40, Arrays.asList(), 40, 100);
+        Combatiente rival = new HechiceroDelVacio(2, "Lyra", 40, Arrays.asList(), 40, 100);
         Tecnica corte = new CorteDeLosMilAmaneceres();
 
         assertFalse(hechicero.puedeUsarTecnica(corte));

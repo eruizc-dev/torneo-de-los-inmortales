@@ -1,6 +1,7 @@
 package sigma.efectos;
 
 import java.util.List;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 import sigma.combatientes.Combatiente;
@@ -18,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class EfectoTemporalTest {
 
     private static Combatiente hechicero(int id, String nombre, int vida) {
-        return new HechiceroDelVacio(id, nombre, 40, List.of(), 40, vida);
+        return new HechiceroDelVacio(id, nombre, 40, Arrays.asList(), 40, vida);
     }
 
     @Test
@@ -52,7 +53,7 @@ public class EfectoTemporalTest {
 
     @Test
     public void elVenenoIgnoraArmaduraDefensaYResistenciaDelMonje() {
-        Combatiente monje = new MonjeDelCuerpoCelestial(1, "Kael", 40, List.of(new ArmaduraDorada()), 40, 100);
+        Combatiente monje = new MonjeDelCuerpoCelestial(1, "Kael", 40, Arrays.asList(new ArmaduraDorada()), 40, 100);
         Tecnica muro = new MuroDelCuerpoDorado();
         monje.agregarTecnica(muro);
         monje.usarTecnica(muro, monje);
@@ -149,7 +150,7 @@ public class EfectoTemporalTest {
     public void toqueDeLaSerpienteDaniaYEnvenenaSegunElTipoDelLanzador() {
         Tecnica toque = new ToqueDeLaSerpiente();
         Combatiente hechicero = hechicero(1, "Nebula", 100);
-        Combatiente cultivador = new CultivadorDeLaEspada(2, "Aurelio", 40, List.of(), 40, 100);
+        Combatiente cultivador = new CultivadorDeLaEspada(2, "Aurelio", 40, Arrays.asList(), 40, 100);
         Combatiente objetivoHechicero = hechicero(3, "A", 100);
         Combatiente objetivoCultivador = hechicero(4, "B", 100);
         hechicero.agregarTecnica(toque);

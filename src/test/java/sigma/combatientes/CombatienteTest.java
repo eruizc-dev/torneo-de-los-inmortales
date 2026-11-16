@@ -1,6 +1,7 @@
 package sigma.combatientes;
 
 import java.util.List;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,8 +16,8 @@ public class CombatienteTest {
 
     @Test
     public void combatienteCaidoNoActua() {
-        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, List.of(), 40, 100);
-        Combatiente aurelio = new CultivadorDeLaEspada(2, "Aurelio", 40, List.of(), 40, 100);
+        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, Arrays.asList(), 40, 100);
+        Combatiente aurelio = new CultivadorDeLaEspada(2, "Aurelio", 40, Arrays.asList(), 40, 100);
 
         Tecnica corte = new CorteDeLosMilAmaneceres();
         nebula.agregarTecnica(corte);
@@ -34,9 +35,9 @@ public class CombatienteTest {
     
     @Test
     public void dosCombatientesConElMismoIdSonElMismoAunqueTenganDistintoNombre() {
-        Combatiente uno = new HechiceroDelVacio(7, "Nebula", 40, List.of(), 40, 100);
-        Combatiente otro = new HechiceroDelVacio(7, "Otro nombre", 40, List.of(), 40, 100);
-        Combatiente distinto = new HechiceroDelVacio(8, "Nebula", 40, List.of(), 40, 100);
+        Combatiente uno = new HechiceroDelVacio(7, "Nebula", 40, Arrays.asList(), 40, 100);
+        Combatiente otro = new HechiceroDelVacio(7, "Otro nombre", 40, Arrays.asList(), 40, 100);
+        Combatiente distinto = new HechiceroDelVacio(8, "Nebula", 40, Arrays.asList(), 40, 100);
 
         assertEquals(uno, otro);
         assertEquals(uno.hashCode(), otro.hashCode());
@@ -46,10 +47,10 @@ public class CombatienteTest {
 
     @Test
     public void cultivadorDeLaEspadaPotenciaElDanioDelAtaqueBasico() {
-        Combatiente cultivador = new CultivadorDeLaEspada(1, "Aurelio", 40, List.of(), 40, 100);
-        Combatiente hechicero = new HechiceroDelVacio(2, "Nebula", 40, List.of(), 40, 100);
-        Combatiente objetivo1 = new HechiceroDelVacio(3, "A", 40, List.of(), 40, 100);
-        Combatiente objetivo2 = new HechiceroDelVacio(4, "B", 40, List.of(), 40, 100);
+        Combatiente cultivador = new CultivadorDeLaEspada(1, "Aurelio", 40, Arrays.asList(), 40, 100);
+        Combatiente hechicero = new HechiceroDelVacio(2, "Nebula", 40, Arrays.asList(), 40, 100);
+        Combatiente objetivo1 = new HechiceroDelVacio(3, "A", 40, Arrays.asList(), 40, 100);
+        Combatiente objetivo2 = new HechiceroDelVacio(4, "B", 40, Arrays.asList(), 40, 100);
 
         cultivador.atacar(objetivo1);
         hechicero.atacar(objetivo2);
@@ -60,8 +61,8 @@ public class CombatienteTest {
 
     @Test
     public void monjeDelCuerpoCelestialRecibeMenosDanio() {
-        Combatiente monje = new MonjeDelCuerpoCelestial(1, "Kael", 40, List.of(), 40, 100);
-        Combatiente hechicero = new HechiceroDelVacio(2, "Nebula", 40, List.of(), 40, 100);
+        Combatiente monje = new MonjeDelCuerpoCelestial(1, "Kael", 40, Arrays.asList(), 40, 100);
+        Combatiente hechicero = new HechiceroDelVacio(2, "Nebula", 40, Arrays.asList(), 40, 100);
 
         monje.recibirDanio(50);
         hechicero.recibirDanio(50);
@@ -72,9 +73,9 @@ public class CombatienteTest {
 
     @Test
     public void hechiceroDelVacioGastaMenosEnergiaAlUsarTecnicas() {
-        Combatiente hechicero = new HechiceroDelVacio(1, "Nebula", 40, List.of(), 40, 100);
-        Combatiente cultivador = new CultivadorDeLaEspada(2, "Aurelio", 40, List.of(), 40, 100);
-        Combatiente rival = new HechiceroDelVacio(3, "Lyra", 40, List.of(), 40, 1000);
+        Combatiente hechicero = new HechiceroDelVacio(1, "Nebula", 40, Arrays.asList(), 40, 100);
+        Combatiente cultivador = new CultivadorDeLaEspada(2, "Aurelio", 40, Arrays.asList(), 40, 100);
+        Combatiente rival = new HechiceroDelVacio(3, "Lyra", 40, Arrays.asList(), 40, 1000);
         Tecnica corte = new CorteDeLosMilAmaneceres();
         hechicero.agregarTecnica(corte);
         cultivador.agregarTecnica(corte);
@@ -88,7 +89,7 @@ public class CombatienteTest {
 
     @Test
     public void losEfectosDeTipoYEquipamientoSeCombinan() {
-        Combatiente monje = new MonjeDelCuerpoCelestial(1, "Kael", 40, List.of(new ArmaduraDorada()), 40, 100);
+        Combatiente monje = new MonjeDelCuerpoCelestial(1, "Kael", 40, Arrays.asList(new ArmaduraDorada()), 40, 100);
 
         monje.recibirDanio(100); // 100 -20% armadura = 80, x0.6 del monje = 48
 
@@ -98,7 +99,7 @@ public class CombatienteTest {
 
     @Test
     public void alLlegarACeroDeVidaQuedaFueraDeCombateSinVidaNegativa() {
-        Combatiente hechicero = new HechiceroDelVacio(1, "Nebula", 40, List.of(), 40, 100);
+        Combatiente hechicero = new HechiceroDelVacio(1, "Nebula", 40, Arrays.asList(), 40, 100);
 
         hechicero.recibirDanio(100);
 
@@ -108,7 +109,7 @@ public class CombatienteTest {
 
     @Test
     public void recuperarEnergiaNoSuperaElMaximo() {
-        Combatiente hechicero = new HechiceroDelVacio(1, "Nebula", 40, List.of(), 40, 100);
+        Combatiente hechicero = new HechiceroDelVacio(1, "Nebula", 40, Arrays.asList(), 40, 100);
 
         hechicero.perderEnergia(5);
         hechicero.recuperarEnergia(10);
@@ -118,7 +119,7 @@ public class CombatienteTest {
 
     @Test
     public void reiniciarCombateDevuelveVidaYEnergiaAlMaximoInclusoAUnCaido() {
-        Combatiente hechicero = new HechiceroDelVacio(1, "Nebula", 40, List.of(), 40, 100);
+        Combatiente hechicero = new HechiceroDelVacio(1, "Nebula", 40, Arrays.asList(), 40, 100);
         hechicero.recibirDanio(500);
         hechicero.perderEnergia(40);
 
@@ -133,7 +134,7 @@ public class CombatienteTest {
     @Test
     public void elCreadorAsignaIdsEnOrdenDeCreacion() {
         CreadorCombatientes creador = new CreadorCombatientes();
-        Escuela escuela = new Escuela("Escuela", List.of(), List.of());
+        Escuela escuela = new Escuela("Escuela", Arrays.asList(), Arrays.asList());
 
         Combatiente primero = creador.crear("Cultivador de la Espada", "Aurelio", escuela);
         Combatiente segundo = creador.crear("Hechicero del Vacío", "Nebula", escuela);
@@ -147,7 +148,7 @@ public class CombatienteTest {
     @Test
     public void elCreadorDevuelveElTipoPedidoConValoresIniciales() {
         CreadorCombatientes creador = new CreadorCombatientes();
-        Escuela escuela = new Escuela("Escuela", List.of(), List.of());
+        Escuela escuela = new Escuela("Escuela", Arrays.asList(), Arrays.asList());
 
         Combatiente kael = creador.crear("Monje del Cuerpo Celestial", "Kael", escuela);
 
@@ -162,7 +163,7 @@ public class CombatienteTest {
     @Test
     public void elCreadorRechazaTiposDesconocidosSinConsumirId() {
         CreadorCombatientes creador = new CreadorCombatientes();
-        Escuela escuela = new Escuela("Escuela", List.of(), List.of());
+        Escuela escuela = new Escuela("Escuela", Arrays.asList(), Arrays.asList());
 
         assertThrows(IllegalArgumentException.class, () -> creador.crear("Pirata", "Jack", escuela));
         Combatiente siguiente = creador.crear("Hechicero del Vacío", "Nebula", escuela);
@@ -173,7 +174,7 @@ public class CombatienteTest {
     @Test
     public void elCreadorRechazaNombreVacioOEscuelaNula() {
         CreadorCombatientes creador = new CreadorCombatientes();
-        Escuela escuela = new Escuela("Escuela", List.of(), List.of());
+        Escuela escuela = new Escuela("Escuela", Arrays.asList(), Arrays.asList());
 
         assertThrows(IllegalArgumentException.class, () -> creador.crear("Hechicero del Vacío", "  ", escuela));
         assertThrows(IllegalArgumentException.class, () -> creador.crear("Hechicero del Vacío", "Nebula", null));

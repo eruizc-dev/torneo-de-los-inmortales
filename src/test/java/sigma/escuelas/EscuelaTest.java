@@ -3,6 +3,7 @@ package sigma.escuelas;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 import sigma.combatientes.Combatiente;
@@ -24,23 +25,23 @@ class EscuelaTest {
 		Tecnica dominio = new DominioDeLaNada();
 		Tecnica meditacion = new MeditacionDelInmortal();
 		Equipamiento anillo = new AnilloEspiritual();
-		Escuela palacio = new Escuela("Palacio del Vacío", List.of(dominio, meditacion), List.of(anillo));
+		Escuela palacio = new Escuela("Palacio del Vacío", Arrays.asList(dominio, meditacion), Arrays.asList(anillo));
 		CreadorCombatientes creador = new CreadorCombatientes();
 
 		Combatiente nebula = creador.crear("Hechicero del Vacío", "Nebula", palacio);
 
-		assertEquals(List.of(dominio, meditacion), nebula.getTecnicas());
-		assertEquals(List.of(anillo), nebula.getEquipamiento());
+		assertEquals(Arrays.asList(dominio, meditacion), nebula.getTecnicas());
+		assertEquals(Arrays.asList(anillo), nebula.getEquipamiento());
 		assertEquals(50, nebula.getEnergiaMaxima()); // 40 + anillo
 		assertEquals(40, nebula.getEnergia()); // equipar no sube el actual
 	}
 
 	@Test
 	public void elMismoTipoPreparadoPorDistintasEscuelasTieneDistintaPreparacion() {
-		Escuela espada = new Escuela("Escuela de la Espada Celestial", List.of(new CorteDeLosMilAmaneceres()),
-				List.of(new EspadaCelestial()));
+		Escuela espada = new Escuela("Escuela de la Espada Celestial", Arrays.asList(new CorteDeLosMilAmaneceres()),
+				Arrays.asList(new EspadaCelestial()));
 		Escuela monasterio = new Escuela("Monasterio del Cuerpo Dorado",
-				List.of(new MuroDelCuerpoDorado(), new MeditacionDelInmortal()), List.of(new ArmaduraDorada()));
+				Arrays.asList(new MuroDelCuerpoDorado(), new MeditacionDelInmortal()), Arrays.asList(new ArmaduraDorada()));
 		CreadorCombatientes creador = new CreadorCombatientes();
 
 		Combatiente aurelio = creador.crear("Cultivador de la Espada", "Aurelio", espada);
@@ -54,7 +55,7 @@ class EscuelaTest {
 
 	@Test
 	public void unaEscuelaPuedePrepararCombatientesDeCualquierTipo() {
-		Escuela palacio = new Escuela("Palacio del Vacío", List.of(new DominioDeLaNada()), List.of());
+		Escuela palacio = new Escuela("Palacio del Vacío", Arrays.asList(new DominioDeLaNada()), Arrays.asList());
 		CreadorCombatientes creador = new CreadorCombatientes();
 
 		Combatiente cultivador = creador.crear("Cultivador de la Espada", "Aurelio", palacio);
@@ -68,8 +69,8 @@ class EscuelaTest {
 
 	@Test
 	public void agregarUnaEscuelaNuevaEsSoloCrearOtroObjeto() {
-		Escuela nueva = new Escuela("Secta del Trueno", List.of(new CorteDeLosMilAmaneceres()),
-				List.of(new ArmaduraDorada()));
+		Escuela nueva = new Escuela("Secta del Trueno", Arrays.asList(new CorteDeLosMilAmaneceres()),
+				Arrays.asList(new ArmaduraDorada()));
 		CreadorCombatientes creador = new CreadorCombatientes();
 
 		Combatiente kael = creador.crear("Monje del Cuerpo Celestial", "Kael", nueva);
@@ -81,8 +82,8 @@ class EscuelaTest {
 
 	@Test
 	public void laEscuelaNoSeModificaSiCambianLasListasOriginales() {
-		List<Tecnica> tecnicas = new ArrayList<>(List.of(new CorteDeLosMilAmaneceres()));
-		Escuela escuela = new Escuela("Escuela", tecnicas, List.of());
+		List<Tecnica> tecnicas = new ArrayList<>(Arrays.asList(new CorteDeLosMilAmaneceres()));
+		Escuela escuela = new Escuela("Escuela", tecnicas, Arrays.asList());
 
 		tecnicas.add(new DominioDeLaNada());
 
@@ -91,9 +92,9 @@ class EscuelaTest {
 
 	@Test
 	public void unaEscuelaConDatosInvalidosSeRechaza() {
-		assertThrows(IllegalArgumentException.class, () -> new Escuela("", List.of(), List.of()));
-		assertThrows(IllegalArgumentException.class, () -> new Escuela("Escuela", null, List.of()));
-		assertThrows(IllegalArgumentException.class, () -> new Escuela("Escuela", List.of(), null));
+		assertThrows(IllegalArgumentException.class, () -> new Escuela("", Arrays.asList(), Arrays.asList()));
+		assertThrows(IllegalArgumentException.class, () -> new Escuela("Escuela", null, Arrays.asList()));
+		assertThrows(IllegalArgumentException.class, () -> new Escuela("Escuela", Arrays.asList(), null));
 	}
 
 }

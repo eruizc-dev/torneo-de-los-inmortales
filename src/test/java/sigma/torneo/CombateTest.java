@@ -2,6 +2,7 @@ package sigma.torneo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,7 +35,7 @@ public class CombateTest {
     }
 
     private static Combatiente hechicero(int id, String nombre, int vida) {
-        return new HechiceroDelVacio(id, nombre, 40, List.of(), 40, vida);
+        return new HechiceroDelVacio(id, nombre, 40, Arrays.asList(), 40, vida);
     }
 
     private List<String> acciones() {
@@ -73,7 +74,7 @@ public class CombateTest {
 
         new Combate(a, b, 1, publicador, 1).ejecutar();
 
-        assertEquals(List.of(
+        assertEquals(Arrays.asList(
                 "A1 realizo un ataque basico contra B2",   // B2 tiene menos vida
                 "A2 realizo un ataque basico contra B2",
                 "B1 realizo un ataque basico contra A1",   // empate 100-100: menor id
@@ -183,7 +184,7 @@ public class CombateTest {
 
     @Test
     public void cadaAsaltoLosCombatientesEnPieRecuperanEnergia() {
-        Combatiente cultivador = new CultivadorDeLaEspada(1, "A1", 40, List.of(), 40, 100);
+        Combatiente cultivador = new CultivadorDeLaEspada(1, "A1", 40, Arrays.asList(), 40, 100);
         cultivador.agregarTecnica(new CorteDeLosMilAmaneceres());
         Pareja a = new Pareja(cultivador, hechicero(2, "A2", 100));
         Pareja b = new Pareja(hechicero(3, "B1", 1000), hechicero(4, "B2", 1000));
@@ -197,7 +198,7 @@ public class CombateTest {
     @Test
     public void losUsosSeConservanEntreCombatesYVidaYEnergiaSeRecuperan() {
         Tecnica corte = new CorteDeLosMilAmaneceres();
-        Combatiente cultivador = new CultivadorDeLaEspada(1, "A1", 40, List.of(), 40, 100);
+        Combatiente cultivador = new CultivadorDeLaEspada(1, "A1", 40, Arrays.asList(), 40, 100);
         Combatiente compañero = hechicero(2, "A2", 100);
         cultivador.agregarTecnica(corte);
         Pareja a = new Pareja(cultivador, compañero);
@@ -233,8 +234,8 @@ public class CombateTest {
     @Test
     public void elCompañeroNoUsaLaTecnicaQueElPrimeroTodaviaPuedeUsar() {
         Tecnica corte = new CorteDeLosMilAmaneceres();
-        Combatiente a1 = new CultivadorDeLaEspada(1, "A1", 40, List.of(), 40, 100);
-        Combatiente a2 = new CultivadorDeLaEspada(2, "A2", 40, List.of(), 40, 100);
+        Combatiente a1 = new CultivadorDeLaEspada(1, "A1", 40, Arrays.asList(), 40, 100);
+        Combatiente a2 = new CultivadorDeLaEspada(2, "A2", 40, Arrays.asList(), 40, 100);
         a1.agregarTecnica(corte);
         a2.agregarTecnica(corte);
         Pareja a = new Pareja(a1, a2);
@@ -271,7 +272,7 @@ public class CombateTest {
 
         new Combate(a, b, 2, publicador, 1).ejecutar();
 
-        List<String> deA1 = acciones().stream().filter(d -> d.startsWith("A1 ")).toList();
+        List<String> deA1 = acciones().stream().filter(d -> d.startsWith("A1 ")).collect(java.util.stream.Collectors.toList());
         assertEquals("A1 utilizo la tecnica Muro del Cuerpo Dorado contra A1", deA1.get(0));
         assertTrue(deA1.get(1).startsWith("A1 utilizo la tecnica Corte de los Mil Amaneceres"));
         assertTrue(a1.tieneDefensaActiva());
@@ -280,7 +281,7 @@ public class CombateTest {
     @Test
     public void sinEnergiaSuficienteRealizaUnAtaqueBasico() {
         Tecnica rugido = new RugidoDeLaBestiaPrimordial(); // cuesta 30 (24 para el hechicero)
-        Combatiente a1 = new HechiceroDelVacio(1, "A1", 20, List.of(), 20, 100);
+        Combatiente a1 = new HechiceroDelVacio(1, "A1", 20, Arrays.asList(), 20, 100);
         a1.agregarTecnica(rugido);
         Pareja a = new Pareja(a1, hechicero(2, "A2", 100));
         Pareja b = new Pareja(hechicero(3, "B1", 100), hechicero(4, "B2", 100));

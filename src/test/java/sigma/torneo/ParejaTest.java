@@ -1,6 +1,7 @@
 package sigma.torneo;
 
 import java.util.List;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 import sigma.combatientes.Combatiente;
@@ -15,8 +16,8 @@ public class ParejaTest {
 
     @Test
     public void compañeroNoPuedeUsarTecnicaMientrasElPrimeroConserveUsos() {
-        Combatiente aurelio = new CultivadorDeLaEspada(1, "Aurelio", 40, List.of(), 40, 100);
-        Combatiente nebula = new HechiceroDelVacio(2, "Nebula", 40, List.of(), 40, 100);
+        Combatiente aurelio = new CultivadorDeLaEspada(1, "Aurelio", 40, Arrays.asList(), 40, 100);
+        Combatiente nebula = new HechiceroDelVacio(2, "Nebula", 40, Arrays.asList(), 40, 100);
 
         Tecnica corte = new CorteDeLosMilAmaneceres();
         aurelio.agregarTecnica(corte);
@@ -33,9 +34,9 @@ public class ParejaTest {
     
     @Test
     public void compañeroPuedeUsarLaTecnicaCuandoElPrimeroAgotaSusUsos() {
-        Combatiente aurelio = new CultivadorDeLaEspada(1, "Aurelio", 40, List.of(), 40, 100);
-        Combatiente nebula = new HechiceroDelVacio(2, "Nebula", 40, List.of(), 40, 100);
-        Combatiente rival = new HechiceroDelVacio(3, "Lyra", 40, List.of(), 40, 10000);
+        Combatiente aurelio = new CultivadorDeLaEspada(1, "Aurelio", 40, Arrays.asList(), 40, 100);
+        Combatiente nebula = new HechiceroDelVacio(2, "Nebula", 40, Arrays.asList(), 40, 100);
+        Combatiente rival = new HechiceroDelVacio(3, "Lyra", 40, Arrays.asList(), 40, 10000);
         Tecnica corte = new CorteDeLosMilAmaneceres();
         aurelio.agregarTecnica(corte);
         nebula.agregarTecnica(corte);
@@ -52,8 +53,8 @@ public class ParejaTest {
 
     @Test
     public void compañeroPuedeUsarLaTecnicaCuandoElPrimeroQuedaFueraDeCombate() {
-        Combatiente aurelio = new CultivadorDeLaEspada(1, "Aurelio", 40, List.of(), 40, 100);
-        Combatiente nebula = new HechiceroDelVacio(2, "Nebula", 40, List.of(), 40, 100);
+        Combatiente aurelio = new CultivadorDeLaEspada(1, "Aurelio", 40, Arrays.asList(), 40, 100);
+        Combatiente nebula = new HechiceroDelVacio(2, "Nebula", 40, Arrays.asList(), 40, 100);
         Tecnica corte = new CorteDeLosMilAmaneceres();
         aurelio.agregarTecnica(corte);
         nebula.agregarTecnica(corte);
@@ -67,8 +68,8 @@ public class ParejaTest {
 
     @Test
     public void laRestriccionDelCompañeroTerminaConElCombate() {
-        Combatiente aurelio = new CultivadorDeLaEspada(1, "Aurelio", 40, List.of(), 40, 100);
-        Combatiente nebula = new HechiceroDelVacio(2, "Nebula", 40, List.of(), 40, 100);
+        Combatiente aurelio = new CultivadorDeLaEspada(1, "Aurelio", 40, Arrays.asList(), 40, 100);
+        Combatiente nebula = new HechiceroDelVacio(2, "Nebula", 40, Arrays.asList(), 40, 100);
         Tecnica corte = new CorteDeLosMilAmaneceres();
         aurelio.agregarTecnica(corte);
         nebula.agregarTecnica(corte);
@@ -82,8 +83,8 @@ public class ParejaTest {
 
     @Test
     public void unaParejaNoPuedeTenerDosVecesAlMismoCombatiente() {
-        Combatiente aurelio = new CultivadorDeLaEspada(1, "Aurelio", 40, List.of(), 40, 100);
-        Combatiente mismoId = new CultivadorDeLaEspada(1, "Clon", 40, List.of(), 40, 100);
+        Combatiente aurelio = new CultivadorDeLaEspada(1, "Aurelio", 40, Arrays.asList(), 40, 100);
+        Combatiente mismoId = new CultivadorDeLaEspada(1, "Clon", 40, Arrays.asList(), 40, 100);
 
         assertThrows(IllegalArgumentException.class, () -> new Pareja(aurelio, aurelio));
         assertThrows(IllegalArgumentException.class, () -> new Pareja(aurelio, mismoId));
@@ -92,10 +93,10 @@ public class ParejaTest {
 
     @Test
     public void cadaParejaRecibeUnIdUnicoAlCrearse() {
-        Pareja primera = new Pareja(new CultivadorDeLaEspada(1, "A", 40, List.of(), 40, 100),
-                new HechiceroDelVacio(2, "B", 40, List.of(), 40, 100));
-        Pareja segunda = new Pareja(new CultivadorDeLaEspada(3, "C", 40, List.of(), 40, 100),
-                new HechiceroDelVacio(4, "D", 40, List.of(), 40, 100));
+        Pareja primera = new Pareja(new CultivadorDeLaEspada(1, "A", 40, Arrays.asList(), 40, 100),
+                new HechiceroDelVacio(2, "B", 40, Arrays.asList(), 40, 100));
+        Pareja segunda = new Pareja(new CultivadorDeLaEspada(3, "C", 40, Arrays.asList(), 40, 100),
+                new HechiceroDelVacio(4, "D", 40, Arrays.asList(), 40, 100));
 
         assertNotEquals(primera.getId(), segunda.getId());
         assertTrue(primera.getId() < segunda.getId());
@@ -104,8 +105,8 @@ public class ParejaTest {
 
     @Test
     public void unaParejaPierdeCuandoSusDosIntegrantesQuedanFueraDeCombate() {
-        Combatiente aurelio = new CultivadorDeLaEspada(1, "Aurelio", 40, List.of(), 40, 100);
-        Combatiente nebula = new HechiceroDelVacio(2, "Nebula", 40, List.of(), 40, 100);
+        Combatiente aurelio = new CultivadorDeLaEspada(1, "Aurelio", 40, Arrays.asList(), 40, 100);
+        Combatiente nebula = new HechiceroDelVacio(2, "Nebula", 40, Arrays.asList(), 40, 100);
         Pareja pareja = new Pareja(aurelio, nebula);
 
         aurelio.recibirDanio(1000);
@@ -117,8 +118,8 @@ public class ParejaTest {
 
     @Test
     public void laVidaTotalSumaLaVidaActualYUnCaidoSumaCero() {
-        Combatiente aurelio = new CultivadorDeLaEspada(1, "Aurelio", 40, List.of(), 40, 100);
-        Combatiente nebula = new HechiceroDelVacio(2, "Nebula", 40, List.of(), 40, 100);
+        Combatiente aurelio = new CultivadorDeLaEspada(1, "Aurelio", 40, Arrays.asList(), 40, 100);
+        Combatiente nebula = new HechiceroDelVacio(2, "Nebula", 40, Arrays.asList(), 40, 100);
         Pareja pareja = new Pareja(aurelio, nebula);
 
         aurelio.recibirDanio(1000);

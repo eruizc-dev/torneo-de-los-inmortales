@@ -2,6 +2,7 @@ package sigma.eventos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
@@ -41,7 +42,7 @@ public class CronistaDeLaSectaTest {
         // 6 y 3 llegaron a la ronda 3 (6 termino con mas vida);
         // 1 y 7 a la ronda 2, ambos con 0 de vida -> por id;
         // 2, 4, 5 y 8 cayeron en la ronda 1 con 0 de vida -> por id.
-        assertEquals(List.of(6, 3, 1, 7, 2, 4, 5, 8), ids(tabla));
+        assertEquals(Arrays.asList(6, 3, 1, 7, 2, 4, 5, 8), ids(tabla));
         assertEquals(3, tabla.get(0).getUltimaRonda());
         assertEquals(40, tabla.get(0).getVidaFinal());
     }
@@ -54,7 +55,7 @@ public class CronistaDeLaSectaTest {
 
         List<PosicionPareja> tabla = cronista.getTablaPosiciones();
 
-        assertEquals(List.of(3, 1, 4, 2), ids(tabla));
+        assertEquals(Arrays.asList(3, 1, 4, 2), ids(tabla));
     }
 
     @Test
@@ -65,7 +66,7 @@ public class CronistaDeLaSectaTest {
 
         List<PosicionPareja> tabla = cronista.getTablaPosiciones();
 
-        PosicionPareja pareja1 = tabla.stream().filter(p -> p.getIdPareja() == 1).findFirst().orElseThrow();
+        PosicionPareja pareja1 = tabla.stream().filter(p -> p.getIdPareja() == 1).findFirst().get();
         assertEquals(2, pareja1.getUltimaRonda());
         assertEquals(5, pareja1.getVidaFinal());
     }
@@ -79,7 +80,7 @@ public class CronistaDeLaSectaTest {
         cronista.recibirAcontecimiento(inicio);
         cronista.recibirAcontecimiento(accion);
 
-        assertEquals(List.of(inicio, accion), cronista.getHistorial());
+        assertEquals(Arrays.asList(inicio, accion), cronista.getHistorial());
         assertTrue(cronista.getTablaPosiciones().isEmpty()); // sin resultados no hay tabla
     }
 
@@ -104,8 +105,8 @@ public class CronistaDeLaSectaTest {
         Acontecimiento accion = new Acontecimiento(TipoAcontecimiento.ACCION, 1, "Accion");
         publicador.notificar(accion);
 
-        assertEquals(List.of(accion), cronista.getHistorial());
-        assertEquals(List.of(accion), recibidosPorOtro);
+        assertEquals(Arrays.asList(accion), cronista.getHistorial());
+        assertEquals(Arrays.asList(accion), recibidosPorOtro);
     }
 
     @Test

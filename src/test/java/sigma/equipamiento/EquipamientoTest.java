@@ -1,6 +1,7 @@
 package sigma.equipamiento;
 
 import java.util.List;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 import sigma.combatientes.Combatiente;
@@ -12,7 +13,7 @@ public class EquipamientoTest {
 
     @Test
     public void equiparCuartoObjetoSeRechazaSinCambios() {
-        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, List.of(), 40, 100);
+        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, Arrays.asList(), 40, 100);
 
         Equipamiento espada = new EspadaCelestial();
         Equipamiento armadura = new ArmaduraDorada();
@@ -24,13 +25,13 @@ public class EquipamientoTest {
         nebula.equipar(anillo);
 
         assertThrows(IllegalStateException.class, () -> nebula.equipar(sello));
-        assertEquals(List.of(espada, armadura, anillo), nebula.getEquipamiento());
+        assertEquals(Arrays.asList(espada, armadura, anillo), nebula.getEquipamiento());
         assertEquals(100, nebula.getVidaMaxima());
     }
 
     @Test
     public void equiparCategoriaRepetidaSeRechazaSinCambios() {
-        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, List.of(), 40, 100);
+        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, Arrays.asList(), 40, 100);
 
         Equipamiento espada = new EspadaCelestial();
         Equipamiento otraEspada = new EspadaCelestial();
@@ -38,13 +39,13 @@ public class EquipamientoTest {
         nebula.equipar(espada);
 
         assertThrows(IllegalArgumentException.class, () -> nebula.equipar(otraEspada));
-        assertEquals(List.of(espada), nebula.getEquipamiento());
+        assertEquals(Arrays.asList(espada), nebula.getEquipamiento());
         assertEquals(12, nebula.calcularDanio(10));
     }
 
     @Test
     public void quitarSelloDelFenixRecortaLaVidaActual() {
-        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, List.of(), 40, 100);
+        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, Arrays.asList(), 40, 100);
 
         Equipamiento sello = new SelloDelFenix();
         nebula.equipar(sello);
@@ -64,7 +65,7 @@ public class EquipamientoTest {
     
     @Test
     public void equipandoCategoriaRepetidaNoCambiaLosMaximos() {
-        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, List.of(), 40, 100);
+        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, Arrays.asList(), 40, 100);
         nebula.equipar(new SelloDelFenix());
 
         assertThrows(IllegalArgumentException.class, () -> nebula.equipar(new SelloDelFenix()));
@@ -74,7 +75,7 @@ public class EquipamientoTest {
 
     @Test
     public void losEfectosDelEquipamientoSeAcumulan() {
-        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, List.of(), 40, 100);
+        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, Arrays.asList(), 40, 100);
 
         nebula.equipar(new SelloDelFenix());
         nebula.equipar(new AnilloEspiritual());
@@ -88,8 +89,8 @@ public class EquipamientoTest {
 
     @Test
     public void espadaCelestialAumentaElDanioProvocado() {
-        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, List.of(), 40, 100);
-        Combatiente rival = new HechiceroDelVacio(2, "Lyra", 40, List.of(), 40, 100);
+        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, Arrays.asList(), 40, 100);
+        Combatiente rival = new HechiceroDelVacio(2, "Lyra", 40, Arrays.asList(), 40, 100);
         nebula.equipar(new EspadaCelestial());
 
         nebula.atacar(rival);
@@ -99,7 +100,7 @@ public class EquipamientoTest {
 
     @Test
     public void equiparUnAumentoDeMaximoNoAumentaElValorActual() {
-        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, List.of(), 40, 100);
+        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, Arrays.asList(), 40, 100);
 
         nebula.equipar(new SelloDelFenix());
         nebula.equipar(new AnilloEspiritual());
@@ -112,7 +113,7 @@ public class EquipamientoTest {
 
     @Test
     public void quitarAnilloEspiritualRecortaLaEnergiaActual() {
-        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, List.of(), 40, 100);
+        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, Arrays.asList(), 40, 100);
         Equipamiento anillo = new AnilloEspiritual();
         nebula.equipar(anillo);
         nebula.recuperarEnergia(10);
@@ -126,7 +127,7 @@ public class EquipamientoTest {
 
     @Test
     public void quitarUnMaximoNoRecortaSiElActualNoLoSupera() {
-        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, List.of(), 40, 100);
+        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, Arrays.asList(), 40, 100);
         Equipamiento sello = new SelloDelFenix();
         nebula.equipar(sello);
         nebula.recibirDanio(50);
@@ -138,7 +139,7 @@ public class EquipamientoTest {
 
     @Test
     public void alQuitarUnEquipamientoSeLiberaElLugar() {
-        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, List.of(), 40, 100);
+        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, Arrays.asList(), 40, 100);
         Equipamiento espada = new EspadaCelestial();
         nebula.equipar(espada);
         nebula.equipar(new ArmaduraDorada());
@@ -155,7 +156,7 @@ public class EquipamientoTest {
 
     @Test
     public void quitarUnEquipamientoQueNoLlevaSeRechaza() {
-        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, List.of(), 40, 100);
+        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, Arrays.asList(), 40, 100);
 
         assertThrows(IllegalArgumentException.class, () -> nebula.desequipar(new EspadaCelestial()));
         assertThrows(IllegalArgumentException.class, () -> nebula.equipar(null));
@@ -163,13 +164,13 @@ public class EquipamientoTest {
 
     @Test
     public void elCombatienteConoceSuEquipamientoYNoSePuedeModificarDesdeAfuera() {
-        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, List.of(), 40, 100);
+        Combatiente nebula = new HechiceroDelVacio(1, "Nebula", 40, Arrays.asList(), 40, 100);
         Equipamiento espada = new EspadaCelestial();
         nebula.equipar(espada);
 
         nebula.getEquipamiento().clear();
 
-        assertEquals(List.of(espada), nebula.getEquipamiento());
+        assertEquals(Arrays.asList(espada), nebula.getEquipamiento());
     }
 
     @Test

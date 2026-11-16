@@ -1,6 +1,7 @@
 package sigma;
 
 import java.util.List;
+import java.util.Arrays;
 
 import sigma.equipamiento.AnilloEspiritual;
 import sigma.equipamiento.ArmaduraDorada;
@@ -25,19 +26,19 @@ public class TorneoDeLosInmortales {
 
 	      "Escuela de la Espada Celestial",
 
-	      List.of(new CorteDeLosMilAmaneceres()),
+	      Arrays.asList(new CorteDeLosMilAmaneceres()),
 
-	      List.of(new EspadaCelestial()));
+	      Arrays.asList(new EspadaCelestial()));
 
 	    Escuela palacioDelVacio = new Escuela("Palacio del Vacío",
 
-	      List.of(new DominioDeLaNada(), new MeditacionDelInmortal(), new ToqueDeLaSerpiente()),
+	      Arrays.asList(new DominioDeLaNada(), new MeditacionDelInmortal(), new ToqueDeLaSerpiente()),
 
-	      List.of(new AnilloEspiritual()));
+	      Arrays.asList(new AnilloEspiritual()));
 	    
 	    Escuela monasterioDelCuerpoDorado = new Escuela("Monasterio del Cuerpo Dorado",
-	    		List.of(new MuroDelCuerpoDorado(), new LaSanacionDelCielo()),
-	    		List.of(new ArmaduraDorada()));
+	    		Arrays.asList(new MuroDelCuerpoDorado(), new LaSanacionDelCielo()),
+	    		Arrays.asList(new ArmaduraDorada()));
 	    
 	    
 
