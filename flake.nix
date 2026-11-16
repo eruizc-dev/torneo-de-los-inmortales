@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "Torneo de los Inmortales - TP POO (Java 8)";
 
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
@@ -22,7 +22,7 @@
         version = "1.0";
         src = ./.;
 
-        nativeBuildInputs = [ pkgs.maven pkgs.makeWrapper ];
+        nativeBuildInputs = [ pkgs.maven pkgs.openjdk8 pkgs.makeWrapper ];
 
         buildPhase = ''
           runHook preBuild
@@ -40,8 +40,8 @@
           runHook preInstall
           mkdir -p $out/bin $out/lib
           cp target/torneo-de-los-inmortales-1.0.jar $out/lib/torneo-de-los-inmortales.jar
-          makeWrapper ${pkgs.openjdk21}/bin/java $out/bin/torneo-de-los-inmortales \
-            --add-flags "-cp $out/lib/torneo-de-los-inmortales.jar sigma.Main"
+          makeWrapper ${pkgs.openjdk8}/bin/java $out/bin/torneo-de-los-inmortales \
+            --add-flags "-cp $out/lib/torneo-de-los-inmortales.jar sigma.TorneoDeLosInmortales"
           runHook postInstall
         '';
       };
@@ -53,7 +53,7 @@
 
       devShells.default = pkgs.mkShell {
         buildInputs = [
-          pkgs.openjdk21
+          pkgs.openjdk8
           pkgs.maven
         ];
       };

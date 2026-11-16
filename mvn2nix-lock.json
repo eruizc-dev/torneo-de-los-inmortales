@@ -285,6 +285,16 @@
       "sha256": "a941745d7faeb8dc9a75edc2c330c994b7440b9a44d21142716b6053967a41c1",
       "url": "https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-utils/3.4.2/maven-shared-utils-3.4.2.pom"
     },
+    "org.apache.maven.surefire:common-java5:jar:3.2.5": {
+      "layout": "org/apache/maven/surefire/common-java5/3.2.5/common-java5-3.2.5.jar",
+      "sha256": "feadf94df4eae79457b3612f21d96fc2a1b37072d352bc6e994352b8fe571f58",
+      "url": "https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-java5/3.2.5/common-java5-3.2.5.jar"
+    },
+    "org.apache.maven.surefire:common-java5:pom:3.2.5": {
+      "layout": "org/apache/maven/surefire/common-java5/3.2.5/common-java5-3.2.5.pom",
+      "sha256": "afe641001c11f1b194d72ea7e8f68322cba87601805e75524d3a3b6c910962fc",
+      "url": "https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-java5/3.2.5/common-java5-3.2.5.pom"
+    },
     "org.apache.maven.surefire:maven-surefire-common:jar:3.2.5": {
       "layout": "org/apache/maven/surefire/maven-surefire-common/3.2.5/maven-surefire-common-3.2.5.jar",
       "sha256": "00c66c89a5a303c665db30da3d95edfa993660c85a778f27af73af63e6972685",
@@ -335,6 +345,16 @@
       "sha256": "3d315c7c99f3a64022802ef5c93ded4f6ecce112e6c7ff919d9491714c726c1a",
       "url": "https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-extensions-spi/3.2.5/surefire-extensions-spi-3.2.5.pom"
     },
+    "org.apache.maven.surefire:surefire-junit-platform:jar:3.2.5": {
+      "layout": "org/apache/maven/surefire/surefire-junit-platform/3.2.5/surefire-junit-platform-3.2.5.jar",
+      "sha256": "a426d731705a4804f33b5f51ff9dd6c13eaba15bac41e2a01595ccd137548ef3",
+      "url": "https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit-platform/3.2.5/surefire-junit-platform-3.2.5.jar"
+    },
+    "org.apache.maven.surefire:surefire-junit-platform:pom:3.2.5": {
+      "layout": "org/apache/maven/surefire/surefire-junit-platform/3.2.5/surefire-junit-platform-3.2.5.pom",
+      "sha256": "3574aa03854596289fa4cffe4a03fb4fe9e1406aa292945d58663d32c28dc668",
+      "url": "https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit-platform/3.2.5/surefire-junit-platform-3.2.5.pom"
+    },
     "org.apache.maven.surefire:surefire-logger-api:jar:3.2.5": {
       "layout": "org/apache/maven/surefire/surefire-logger-api/3.2.5/surefire-logger-api-3.2.5.jar",
       "sha256": "da275c04bd08355403f987d83f6ecef1afa54e92864cb73ca6ec89cc062ed50d",
@@ -344,6 +364,11 @@
       "layout": "org/apache/maven/surefire/surefire-logger-api/3.2.5/surefire-logger-api-3.2.5.pom",
       "sha256": "d14b0f073e7d5d7b051f4bea853b9c921cd6f4301e2b148f66a7108210504dc8",
       "url": "https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-logger-api/3.2.5/surefire-logger-api-3.2.5.pom"
+    },
+    "org.apache.maven.surefire:surefire-providers:pom:3.2.5": {
+      "layout": "org/apache/maven/surefire/surefire-providers/3.2.5/surefire-providers-3.2.5.pom",
+      "sha256": "6848e38924e3635a31b066a3eda4481ca2790d1d1b5242381df277bcfaf2256e",
+      "url": "https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-providers/3.2.5/surefire-providers-3.2.5.pom"
     },
     "org.apache.maven.surefire:surefire-shared-utils:jar:3.2.5": {
       "layout": "org/apache/maven/surefire/surefire-shared-utils/3.2.5/surefire-shared-utils-3.2.5.jar",
@@ -489,6 +514,16 @@
       "layout": "org/apache/apache/32/apache-32.pom",
       "sha256": "cfd872c0ec27f53ae68f43dbc0fecded8add773079a53afbd390e407b42ce72f",
       "url": "https://repo.maven.apache.org/maven2/org/apache/apache/32/apache-32.pom"
+    },
+    "org.apiguardian:apiguardian-api:jar:1.1.2": {
+      "layout": "org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar",
+      "sha256": "b509448ac506d607319f182537f0b35d71007582ec741832a1f111e5b5b70b38",
+      "url": "https://repo.maven.apache.org/maven2/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar"
+    },
+    "org.apiguardian:apiguardian-api:pom:1.1.2": {
+      "layout": "org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.pom",
+      "sha256": "32355081d109095c3d5d374d5a43b4f4c1b75d549e983ef50723e2772e5302a0",
+      "url": "https://repo.maven.apache.org/maven2/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.pom"
     },
     "org.codehaus.plexus:plexus-archiver:jar:4.9.2": {
       "layout": "org/codehaus/plexus/plexus-archiver/4.9.2/plexus-archiver-4.9.2.jar",
@@ -780,6 +815,106 @@
       "sha256": "13023471418b890557b982e4cbab2b5f6967adf1cebe54bf630fe201a63963cc",
       "url": "https://repo.maven.apache.org/maven2/org/jboss/weld/weld-parent/26/weld-parent-26.pom"
     },
+    "org.junit.jupiter:junit-jupiter-api:jar:5.11.4": {
+      "layout": "org/junit/jupiter/junit-jupiter-api/5.11.4/junit-jupiter-api-5.11.4.jar",
+      "sha256": "ab83ef9e51ac4597d59d26b4b58812129550e2f579a404c8af7d09f5ce5b4293",
+      "url": "https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter-api/5.11.4/junit-jupiter-api-5.11.4.jar"
+    },
+    "org.junit.jupiter:junit-jupiter-api:pom:5.11.4": {
+      "layout": "org/junit/jupiter/junit-jupiter-api/5.11.4/junit-jupiter-api-5.11.4.pom",
+      "sha256": "512d23ff39c76665a1a3645526230bcf889bd49884304f7febe047b018eeb339",
+      "url": "https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter-api/5.11.4/junit-jupiter-api-5.11.4.pom"
+    },
+    "org.junit.jupiter:junit-jupiter-engine:jar:5.11.4": {
+      "layout": "org/junit/jupiter/junit-jupiter-engine/5.11.4/junit-jupiter-engine-5.11.4.jar",
+      "sha256": "cdf8ac59f3fad774ca738ad03890950eeb91833ef0e8908753177edd26f1581c",
+      "url": "https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter-engine/5.11.4/junit-jupiter-engine-5.11.4.jar"
+    },
+    "org.junit.jupiter:junit-jupiter-engine:pom:5.11.4": {
+      "layout": "org/junit/jupiter/junit-jupiter-engine/5.11.4/junit-jupiter-engine-5.11.4.pom",
+      "sha256": "b0a323b0d03444441d13d4630b40db5ef84160d2c2f585d4d646dc3882f99207",
+      "url": "https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter-engine/5.11.4/junit-jupiter-engine-5.11.4.pom"
+    },
+    "org.junit.jupiter:junit-jupiter-params:jar:5.11.4": {
+      "layout": "org/junit/jupiter/junit-jupiter-params/5.11.4/junit-jupiter-params-5.11.4.jar",
+      "sha256": "02a6e015de7ce94ac7f256e7fa05b8091dea861fe79a555a7993313d0f6c7d96",
+      "url": "https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter-params/5.11.4/junit-jupiter-params-5.11.4.jar"
+    },
+    "org.junit.jupiter:junit-jupiter-params:pom:5.11.4": {
+      "layout": "org/junit/jupiter/junit-jupiter-params/5.11.4/junit-jupiter-params-5.11.4.pom",
+      "sha256": "8c359bbea07c64a6acdd8c1e13b4f77058b2432b35e86e9a95ddc63249a0ad54",
+      "url": "https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter-params/5.11.4/junit-jupiter-params-5.11.4.pom"
+    },
+    "org.junit.jupiter:junit-jupiter:jar:5.11.4": {
+      "layout": "org/junit/jupiter/junit-jupiter/5.11.4/junit-jupiter-5.11.4.jar",
+      "sha256": "aa880e4afba87d447357e4c1fc098c5cb1d200cb9403496c00d3b35a5bd0e8db",
+      "url": "https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter/5.11.4/junit-jupiter-5.11.4.jar"
+    },
+    "org.junit.jupiter:junit-jupiter:pom:5.11.4": {
+      "layout": "org/junit/jupiter/junit-jupiter/5.11.4/junit-jupiter-5.11.4.pom",
+      "sha256": "a862df11ee539982efcb141d9c0ade7037bba0265d0b589d5fb84db0d212f1d9",
+      "url": "https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter/5.11.4/junit-jupiter-5.11.4.pom"
+    },
+    "org.junit.platform:junit-platform-commons:jar:1.11.4": {
+      "layout": "org/junit/platform/junit-platform-commons/1.11.4/junit-platform-commons-1.11.4.jar",
+      "sha256": "9edd969b0d0670c54105bc91ae79bd1c6f503e12115faba82073b84c86bbc334",
+      "url": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-commons/1.11.4/junit-platform-commons-1.11.4.jar"
+    },
+    "org.junit.platform:junit-platform-commons:jar:1.9.3": {
+      "layout": "org/junit/platform/junit-platform-commons/1.9.3/junit-platform-commons-1.9.3.jar",
+      "sha256": "8519157df813c210e85fc1414b74109e3d85f43d7092563ed704c43c48f0d5e6",
+      "url": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-commons/1.9.3/junit-platform-commons-1.9.3.jar"
+    },
+    "org.junit.platform:junit-platform-commons:pom:1.11.4": {
+      "layout": "org/junit/platform/junit-platform-commons/1.11.4/junit-platform-commons-1.11.4.pom",
+      "sha256": "cd12d2b7c242f165548ed9c9406160dcedb6080925b47cf731e0fdae5fb4bce2",
+      "url": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-commons/1.11.4/junit-platform-commons-1.11.4.pom"
+    },
+    "org.junit.platform:junit-platform-commons:pom:1.9.3": {
+      "layout": "org/junit/platform/junit-platform-commons/1.9.3/junit-platform-commons-1.9.3.pom",
+      "sha256": "e17a1fde4782f2fc23b42deca75c0b0566d5c29850d0306be65c5da73b802178",
+      "url": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-commons/1.9.3/junit-platform-commons-1.9.3.pom"
+    },
+    "org.junit.platform:junit-platform-engine:jar:1.11.4": {
+      "layout": "org/junit/platform/junit-platform-engine/1.11.4/junit-platform-engine-1.11.4.jar",
+      "sha256": "b1dd998f64f9acadc15966d9cd3d08074662677b3e390f0a38fcbf0bb4c72330",
+      "url": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-engine/1.11.4/junit-platform-engine-1.11.4.jar"
+    },
+    "org.junit.platform:junit-platform-engine:jar:1.9.3": {
+      "layout": "org/junit/platform/junit-platform-engine/1.9.3/junit-platform-engine-1.9.3.jar",
+      "sha256": "0c39553d9a03510757227f5a1c6cc6530287b1a321ed6258450664874aa2a16a",
+      "url": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-engine/1.9.3/junit-platform-engine-1.9.3.jar"
+    },
+    "org.junit.platform:junit-platform-engine:pom:1.11.4": {
+      "layout": "org/junit/platform/junit-platform-engine/1.11.4/junit-platform-engine-1.11.4.pom",
+      "sha256": "943471579984212fbe69d03edec7c2ff4fbab1888be0b80c265ea70869fd8abd",
+      "url": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-engine/1.11.4/junit-platform-engine-1.11.4.pom"
+    },
+    "org.junit.platform:junit-platform-engine:pom:1.9.3": {
+      "layout": "org/junit/platform/junit-platform-engine/1.9.3/junit-platform-engine-1.9.3.pom",
+      "sha256": "1c5ab7fcebe3a601183979baafbf2f40e5543882a7ca23e9f9eb719195a747d5",
+      "url": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-engine/1.9.3/junit-platform-engine-1.9.3.pom"
+    },
+    "org.junit.platform:junit-platform-launcher:jar:1.11.4": {
+      "layout": "org/junit/platform/junit-platform-launcher/1.11.4/junit-platform-launcher-1.11.4.jar",
+      "sha256": "d7430bd029e7fcced53ee445e4d2d1a8a1e043ea4c4df43b6335a857f79761ae",
+      "url": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.11.4/junit-platform-launcher-1.11.4.jar"
+    },
+    "org.junit.platform:junit-platform-launcher:jar:1.9.3": {
+      "layout": "org/junit/platform/junit-platform-launcher/1.9.3/junit-platform-launcher-1.9.3.jar",
+      "sha256": "8515e91808a09c8c9af5e359185b5991b5e76b8adcf185b9a3dab4ec8e5ba8ff",
+      "url": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.9.3/junit-platform-launcher-1.9.3.jar"
+    },
+    "org.junit.platform:junit-platform-launcher:pom:1.11.4": {
+      "layout": "org/junit/platform/junit-platform-launcher/1.11.4/junit-platform-launcher-1.11.4.pom",
+      "sha256": "b67cd53802e06aa82aa5966e99fb42917d220457849e5c080c8360753ed67c31",
+      "url": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.11.4/junit-platform-launcher-1.11.4.pom"
+    },
+    "org.junit.platform:junit-platform-launcher:pom:1.9.3": {
+      "layout": "org/junit/platform/junit-platform-launcher/1.9.3/junit-platform-launcher-1.9.3.pom",
+      "sha256": "0b7ccb4425e8209a0335cf83d63cc3672bf8d9110c6966efe7977d1166648f27",
+      "url": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.9.3/junit-platform-launcher-1.9.3.pom"
+    },
     "org.junit:junit-bom:pom:5.10.0": {
       "layout": "org/junit/junit-bom/5.10.0/junit-bom-5.10.0.pom",
       "sha256": "e006dd8894f9fc7b75fc32bb12fe5ed8be65667d5b454f99e2e0b8c5bb8d30b3",
@@ -795,6 +930,11 @@
       "sha256": "169dd904a4b0f6520cffe658cc62292bfe9f3c14a989fa92120724cde43a9968",
       "url": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.10.2/junit-bom-5.10.2.pom"
     },
+    "org.junit:junit-bom:pom:5.11.4": {
+      "layout": "org/junit/junit-bom/5.11.4/junit-bom-5.11.4.pom",
+      "sha256": "19d4b747b204805325b6334553296f986562277a4ac1cb5e593a5e4c4f5e4115",
+      "url": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.11.4/junit-bom-5.11.4.pom"
+    },
     "org.junit:junit-bom:pom:5.7.1": {
       "layout": "org/junit/junit-bom/5.7.1/junit-bom-5.7.1.pom",
       "sha256": "0b9b14a3d62106fafe8c68a717b87b87ad18685899451b753c04fa41b6857784",
@@ -809,6 +949,26 @@
       "layout": "org/junit/junit-bom/5.9.3/junit-bom-5.9.3.pom",
       "sha256": "4d0329cd9e72f2420e5ca15724cbfe6ffa6e5fd2888361516271190fdc342ed7",
       "url": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.9.3/junit-bom-5.9.3.pom"
+    },
+    "org.opentest4j:opentest4j:jar:1.2.0": {
+      "layout": "org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar",
+      "sha256": "58812de60898d976fb81ef3b62da05c6604c18fd4a249f5044282479fc286af2",
+      "url": "https://repo.maven.apache.org/maven2/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar"
+    },
+    "org.opentest4j:opentest4j:jar:1.3.0": {
+      "layout": "org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar",
+      "sha256": "48e2df636cab6563ced64dcdff8abb2355627cb236ef0bf37598682ddf742f1b",
+      "url": "https://repo.maven.apache.org/maven2/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar"
+    },
+    "org.opentest4j:opentest4j:pom:1.2.0": {
+      "layout": "org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.pom",
+      "sha256": "a96e671816c1ff8803bdec74c9241f025bdfb277da5d2b4ee02266405936f994",
+      "url": "https://repo.maven.apache.org/maven2/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.pom"
+    },
+    "org.opentest4j:opentest4j:pom:1.3.0": {
+      "layout": "org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.pom",
+      "sha256": "9bf7cffc410f3e8372c2522578df9ca56d9d43bd937e30948706c232a943b355",
+      "url": "https://repo.maven.apache.org/maven2/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.pom"
     },
     "org.ow2.asm:asm:jar:9.6": {
       "layout": "org/ow2/asm/asm/9.6/asm-9.6.jar",
