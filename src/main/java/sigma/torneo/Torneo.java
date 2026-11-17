@@ -93,10 +93,6 @@ public class Torneo {
 		return campeona;
 	}
 	
-	public boolean estaIniciado() {
-		return iniciado;
-	}
-	
 	public void agregarObservador(Observador observador) {
 		publicador.agregarObservador(observador);
 	}
