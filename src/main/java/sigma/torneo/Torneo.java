@@ -13,7 +13,11 @@ import sigma.eventos.TipoAcontecimiento;
 
 public class Torneo {
 	
-	public boolean iniciado;
+	private boolean iniciado;
+	
+	public Torneo() {
+		Pareja.resetIds();
+	}
 	
 	private final PublicadorAcontecimientos publicador = new PublicadorAcontecimientos();
 	private final List<Pareja> parejasInscriptas = new ArrayList<>();
@@ -89,7 +93,11 @@ public class Torneo {
 		return campeona;
 	}
 	
-	public void agregarObservaodr(Observador observador) {
+	public boolean estaIniciado() {
+		return iniciado;
+	}
+	
+	public void agregarObservador(Observador observador) {
 		publicador.agregarObservador(observador);
 	}
 	

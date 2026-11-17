@@ -48,7 +48,7 @@ public class TorneoTest {
             Escuela[] escuelas = { espada, palacio, monasterio };
 
             CreadorCombatientes creador = new CreadorCombatientes();
-            torneo.agregarObservaodr(cronista);
+            torneo.agregarObservador(cronista);
             for (int i = 0; i < cantidadParejas; i++) {
                 Combatiente uno = creador.crear(TIPOS[i % 3], "C" + (2 * i + 1), escuelas[i % 3]);
                 Combatiente dos = creador.crear(TIPOS[(i + 1) % 3], "C" + (2 * i + 2), escuelas[(i + 2) % 3]);

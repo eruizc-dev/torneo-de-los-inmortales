@@ -28,6 +28,10 @@ public class Pareja {
 		this.usuarioTecnica = new HashMap<>();
 	}
 	
+	public static void resetIds() {
+		proximoId = 1;
+	}
+	
 	public void registrarUsuarioTecnica(Combatiente combatiente, Tecnica tecnica) {
 		if(!permiteUsarTecnica(combatiente, tecnica)) {
 			throw new IllegalStateException("El compañero tiene bloqueada esta tecnica");

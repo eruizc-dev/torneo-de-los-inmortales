@@ -69,8 +69,8 @@ public class TorneoDeLosInmortales {
 	    HeraldoImperial heraldo = new HeraldoImperial();
 	    CronistaDeLaSecta cronista = new CronistaDeLaSecta();
 	    
-	    torneo.agregarObservaodr(heraldo);
-	    torneo.agregarObservaodr(cronista);
+	    torneo.agregarObservador(heraldo);
+	    torneo.agregarObservador(cronista);
 
 	    // Crear los demás combatientes e inscribir las otras tres parejas.
 	    Pareja primera = new Pareja(aurelio, nebula);
