@@ -220,7 +220,7 @@ public abstract class Combatiente {
             return true;
         if (obj == null)
             return false;
-        if (getClass() != obj.getClass())
+        if (!(obj instanceof Combatiente))
             return false;
         Combatiente other = (Combatiente) obj;
         if (this.id != other.id)
